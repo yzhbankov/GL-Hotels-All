@@ -5,16 +5,27 @@
 }
 
 .rain {
-  background: url('../../../assets/images/rain.png');
+  background: url('../../../assets/images/rain.png') no-repeat top left;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  background-size: 50px 50px;
 
 }
 
 .sun {
-  background: url('../../../assets/images/sun.png');
+  background: url('../../../assets/images/sun.png') no-repeat top left;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  background-size: 50px 50px;
 
 }
 
 .cloud {
-  background: url('../../../assets/images/cloudy.png');
-
+  background: url('../../../assets/images/cloudy.png') no-repeat top left;
+  height: 50px;
+  width: 50px;
+  display: inline-block;
+  background-size: 50px 50px;
 }
