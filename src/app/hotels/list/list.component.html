@@ -1,0 +1,10 @@
+<div>
+  <ul>
+    <li *ngFor="let hotel of hotels">
+      <app-hotel
+        [hotel]="hotel"
+        (click)="selectHotel(hotel)"
+      ></app-hotel>
+    </li>
+  </ul>
+</div>
