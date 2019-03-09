@@ -1,9 +1,23 @@
-<div>
-    <div>Temperature:</div>
-    <div>{{weather.temperature}}</div>
+<div [className]="'hotel-weather container'">
+  <h3>The weather</h3>
+  <hr />
+  <div [className]="'row'">
 
-    <div>Wind:</div>
-    <div>{{weather.temperature}}</div>
+    <div [className]="'col-md-9'">
+      <div [className]="'row'">
+        <div [className]="'col-md-6'">Temperature:</div>
+        <div [className]="'col-md-6'">{{weather.temperature}}	&#176;</div>
+      </div>
+      <div [className]="'row'">
+        <div [className]="'col-md-6'">Wind:</div>
+        <div [className]="'col-md-6'">{{weather.wind}} m/sec</div>
+      </div>
+    </div>
 
-    <div>{{weather.icon}}</div>
+    <div [className]="'col-md-3'">
+      <span [className]="weather.icon"></span>
+    </div>
+
+  </div>
+
 </div>

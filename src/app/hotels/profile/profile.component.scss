@@ -1,0 +1,18 @@
+.hotel-profile {
+  background-color: #ffeee9;
+  color: black;
+  border-radius: 10px;
+
+  img {
+    position: relative;
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+}

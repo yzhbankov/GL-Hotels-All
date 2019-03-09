@@ -1,0 +1,13 @@
+<div [className]="'hotel-details'">
+  <div *ngFor="let imgPath of hotel.photos" [className]="'hotels-pictures'">
+    <img src="{{imgPath}}">
+  </div>
+  <div [className]="'row'">
+    <div [className]="'col-md-6'">
+      <app-profile [profile]="hotel.profile"></app-profile>
+    </div>
+    <div [className]="'col-md-6'">
+      <app-weather [weather]="hotel.weather"></app-weather>
+    </div>
+  </div>
+</div>
