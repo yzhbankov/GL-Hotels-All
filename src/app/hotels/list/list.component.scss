@@ -3,5 +3,16 @@
 }
 
 .app-list {
-  max-width: 400px;
+  //max-width: 400px;
+}
+
+.hotel-list {
+  border-radius: 10px;
+  padding: 5px;
+  width: 600px;
+  height: 500px;
+  margin: 0 auto;
+  overflow-y: auto;
+  background-color: #1891D9;
+
 }

@@ -1,8 +1,11 @@
-<mat-list [className]="'items-list'">
-  <mat-list-item *ngFor="let hotel of hotels">
-    <app-hotel
-      [hotel]="hotel"
-      (click)="selectHotel(hotel)"
-    ></app-hotel>
-  </mat-list-item>
-</mat-list>
+<div [className]="'hotel-list'">
+  <mat-list [className]="'items-list'">
+    <mat-list-item *ngFor="let hotel of hotels">
+      <app-hotel
+        [hotel]="hotel"
+        (click)="selectHotel(hotel)"
+      ></app-hotel>
+      <hr />
+    </mat-list-item>
+  </mat-list>
+</div>
