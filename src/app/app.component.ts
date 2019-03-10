@@ -13,9 +13,14 @@ export class AppComponent {
 
   public hotels: IHotel[] = Hotels;
   public selectedHotel: IHotel = Hotels[0];
+  public activeFilter: string;
 
   public displaySelectedHotel(hotel: IHotel): void {
     this.selectedHotel = hotel;
+  }
+
+  public setActiveFilter(filter: string): void {
+    this.activeFilter = filter;
   }
 
 }

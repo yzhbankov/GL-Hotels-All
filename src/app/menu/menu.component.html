@@ -1,0 +1,14 @@
+<div [className]="'menu'">
+  <div [className]="'row'">
+    <div [className]="'col-md-6'">
+      Search
+    </div>
+    <div [className]="'col-md-6'">
+      <div [className]="'row'">
+        <div [className]="'col-md-3'" *ngFor="let filter of filters">
+          <span [className]="'menu-filter'" (click)="setActiveFilter(filter)">{{filter}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

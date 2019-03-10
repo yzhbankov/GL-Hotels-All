@@ -2,7 +2,9 @@
 
 <app-details [hotel]="selectedHotel"></app-details>
 
-<app-list [hotels]="hotels" (hotel)="displaySelectedHotel($event)"></app-list>
+<app-menu (activeFilter)="setActiveFilter($event)"></app-menu>
+
+<app-list [hotels]="hotels | filter: activeFilter" (hotel)="displaySelectedHotel($event)"></app-list>
 
 <app-footer></app-footer>
 
