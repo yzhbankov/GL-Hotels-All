@@ -1,6 +1,5 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { IHotel } from '../models';
-import { Hotels } from '../mock-hotels';
 
 @Component({
   selector: 'app-list',
@@ -9,17 +8,15 @@ import { Hotels } from '../mock-hotels';
 })
 export class ListComponent implements OnInit {
 
-  hotels = Hotels;
+  @Input() hotels: IHotel[];
 
   @Output() hotel: EventEmitter<IHotel> = new EventEmitter();
 
-  constructor() { }
-
-  public selectHotel(hotel: IHotel) {
+  public selectHotel(hotel: IHotel): void {
     this.hotel.emit(hotel)
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

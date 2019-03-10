@@ -2,7 +2,7 @@
 
 <app-details [hotel]="selectedHotel"></app-details>
 
-<app-list (hotel)="displaySelectedHotel($event)"></app-list>
+<app-list [hotels]="hotels" (hotel)="displaySelectedHotel($event)"></app-list>
 
 <app-footer></app-footer>
 

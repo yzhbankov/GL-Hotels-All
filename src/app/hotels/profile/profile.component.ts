@@ -7,10 +7,10 @@ import { IProfile } from '../models';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  @Input() profile: IProfile;
-  constructor() { }
+  @Input()
+  public profile: IProfile;
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

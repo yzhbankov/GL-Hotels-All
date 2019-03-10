@@ -7,11 +7,9 @@ import { IWeather } from '../models';
   styleUrls: ['./weather.component.scss']
 })
 export class WeatherComponent implements OnInit {
-  @Input() weather: IWeather;
+  @Input() public weather: IWeather;
 
-  constructor() { }
-
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

@@ -11,9 +11,10 @@ import { Hotels } from './hotels/mock-hotels';
 export class AppComponent {
   title = 'GL-Hotels-App';
 
-  selectedHotel: IHotel = Hotels[0];
+  public hotels: IHotel[] = Hotels;
+  public selectedHotel: IHotel = Hotels[0];
 
-  displaySelectedHotel(hotel: IHotel) {
+  public displaySelectedHotel(hotel: IHotel): void {
     this.selectedHotel = hotel;
   }
 

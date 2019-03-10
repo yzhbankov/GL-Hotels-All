@@ -7,11 +7,10 @@ import { IHotel } from '../models';
 })
 export class DetailsComponent implements OnInit {
 
-  @Input() hotel: IHotel;
+  @Input()
+  public hotel: IHotel;
 
-  constructor() { }
-
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
 }

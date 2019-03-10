@@ -7,11 +7,11 @@ import { IHotel } from '../models';
   styleUrls: ['./hotel.component.scss']
 })
 export class HotelComponent implements OnInit {
-  @Input() hotel: IHotel;
 
-  constructor() { }
+  @Input()
+  public hotel: IHotel;
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }
