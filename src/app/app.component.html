@@ -7,7 +7,13 @@
   (searchValue)="setSearchValue($event)"
 ></app-menu>
 
-<app-list [hotels]="hotels | filter: activeFilter | search: searchValue" (hotel)="displaySelectedHotel($event)"></app-list>
+<app-list
+  [hotels]="hotels | filter: favorites: activeFilter | search: searchValue"
+  [favorites]="favorites"
+  [addHotelToFavorites]="addHotelToFavorites"
+  [removeHotelFromFavorites]="removeHotelFromFavorites"
+  (hotel)="displaySelectedHotel($event)"
+></app-list>
 
 <app-footer></app-footer>
 

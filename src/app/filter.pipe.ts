@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { IHotel } from './hotels/models';
+import { FILTERS } from '../common/constants';
 import { getNumberValueFromString } from '../common/utils';
 
 @Pipe({
@@ -8,8 +9,12 @@ import { getNumberValueFromString } from '../common/utils';
 
 export class FilterPipe implements PipeTransform {
 
-  transform(hotels: IHotel[], stars: string): IHotel[] {
-    const numericStars = getNumberValueFromString(stars);
+  transform(hotels: IHotel[], favorites: IHotel[], filter: string): IHotel[] {
+    if (filter === FILTERS.SHOW_FAVORITES) {
+      return favorites
+    }
+
+    const numericStars = getNumberValueFromString(filter);
 
     if (!numericStars)  {
       return hotels;

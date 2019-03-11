@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { IHotel } from '../models';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {IHotel} from '../models';
 
 @Component({
   selector: 'app-hotel',
@@ -8,10 +8,27 @@ import { IHotel } from '../models';
 })
 export class HotelComponent implements OnInit {
 
-  @Input()
-  public hotel: IHotel;
+  @Input() public hotel: IHotel;
+  @Input() public inFavorites: boolean;
+  @Input() public addHotelToFavorites: Function;
+  @Input() public removeHotelFromFavorites: Function;
+
+  public addHotel(hotel: IHotel, event: Event): void {
+    event.stopPropagation();
+
+    this.addHotelToFavorites(hotel);
+  }
+
+  public removeHotel(hotel: IHotel, event: Event): void {
+    event.stopPropagation();
+
+    this.removeHotelFromFavorites(hotel);
+  }
 
   ngOnInit(): void {
+    console.log('this.inFavorites ', this.inFavorites)
+    this.addHotelToFavorites = this.addHotelToFavorites.bind(this);
+    this.removeHotelFromFavorites = this.removeHotelFromFavorites.bind(this);
   }
 
 }

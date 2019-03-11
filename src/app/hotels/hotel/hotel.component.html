@@ -3,12 +3,12 @@
     <h5>{{hotel.title}}</h5>
 
     <div [className]="'row'">
-      <div [className]="'col-md-6'">Address: </div>
+      <div [className]="'col-md-6'">Address:</div>
       <div [className]="'col-md-6'">{{hotel.address}}</div>
     </div>
 
     <div [className]="'row'">
-      <div [className]="'col-md-6'">Phone:  </div>
+      <div [className]="'col-md-6'">Phone:</div>
       <div [className]="'col-md-6'">{{hotel.phone}}</div>
     </div>
 
@@ -19,6 +19,14 @@
 
   <div [className]="'col-md-3'">
     <div [className]="'hotel-picture'"><img src="{{hotel.picture}}"></div>
+    <div [className]="'hotel-favorites-btn'">
+      <div *ngIf="!inFavorites; else elseBlock">
+        <button (click)="addHotel(hotel, $event)">Add</button>
+      </div>
+      <ng-template #elseBlock>
+        <button (click)="removeHotel(hotel, $event)">Remove</button>
+      </ng-template>
+    </div>
   </div>
 
   <hr/>

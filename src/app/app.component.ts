@@ -12,7 +12,9 @@ export class AppComponent {
   title = 'GL-Hotels-App';
 
   public hotels: IHotel[] = Hotels;
+  public favorites: IHotel[] = [];
   public selectedHotel: IHotel = Hotels[0];
+
   public activeFilter: string;
   public searchValue: string;
 
@@ -26,6 +28,19 @@ export class AppComponent {
 
   public setSearchValue(value: string): void {
     this.searchValue = value;
+  }
+
+  public addHotelToFavorites(hotel: IHotel):  void {
+    const hasInFavorites = this.favorites.some((favorite_hotel: IHotel) => favorite_hotel.title === hotel.title);
+    if (!hasInFavorites) {
+      this.favorites.push(hotel);
+    }
+  }
+
+  public removeHotelFromFavorites(hotel: IHotel):  void {
+    const itemIndex = this.favorites.findIndex((favorite_hotel: IHotel) => favorite_hotel.title === hotel.title);
+
+    this.favorites.splice(itemIndex, 1);
   }
 
 }

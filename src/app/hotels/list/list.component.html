@@ -3,6 +3,9 @@
     <mat-list-item *ngFor="let hotel of hotels">
       <app-hotel
         [hotel]="hotel"
+        [inFavorites]="hotelInFavorites(hotel)"
+        [addHotelToFavorites]="addHotelToFavorites"
+        [removeHotelFromFavorites]="removeHotelFromFavorites"
         (click)="selectHotel(hotel)"
       ></app-hotel>
       <hr />
