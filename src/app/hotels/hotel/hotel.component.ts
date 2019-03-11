@@ -9,6 +9,7 @@ import {IHotel} from '../models';
 export class HotelComponent implements OnInit {
 
   @Input() public hotel: IHotel;
+  @Input() public index: number;
   @Input() public inFavorites: boolean;
   @Input() public addHotelToFavorites: Function;
   @Input() public removeHotelFromFavorites: Function;
@@ -25,10 +26,6 @@ export class HotelComponent implements OnInit {
     this.removeHotelFromFavorites(hotel);
   }
 
-  ngOnInit(): void {
-    console.log('this.inFavorites ', this.inFavorites)
-    this.addHotelToFavorites = this.addHotelToFavorites.bind(this);
-    this.removeHotelFromFavorites = this.removeHotelFromFavorites.bind(this);
-  }
+  public ngOnInit(): void {  }
 
 }

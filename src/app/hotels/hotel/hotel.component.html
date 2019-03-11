@@ -1,4 +1,4 @@
-<div [className]="'hotel-list-item row'">
+<div [className]="'hotel-list-item row'" [ngStyle]="{'background-color': index  % 2 === 0 ? '#18a3ed':'#1891D9'}">
   <div [className]="'col-md-9'">
     <h5>{{hotel.title}}</h5>
 
