@@ -21,3 +21,22 @@ export class FilterPipe implements PipeTransform {
   }
 
 }
+
+@Pipe({
+  name: 'search'
+})
+
+export class SearchPipe implements PipeTransform {
+
+  transform(hotels: IHotel[], searchValue: string): IHotel[] {
+
+    if (!searchValue || searchValue.length === 0)  {
+      return hotels;
+    }
+
+    return hotels.filter((hotel: IHotel) => {
+      return hotel.title.indexOf(searchValue) !== -1;
+    })
+  }
+
+}

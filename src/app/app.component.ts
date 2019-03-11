@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { IHotel } from './hotels/models';
-import { Hotels } from './hotels/mock-hotels';
+import {Component} from '@angular/core';
+import {IHotel} from './hotels/models';
+import {Hotels} from './hotels/mock-hotels';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +14,7 @@ export class AppComponent {
   public hotels: IHotel[] = Hotels;
   public selectedHotel: IHotel = Hotels[0];
   public activeFilter: string;
+  public searchValue: string;
 
   public displaySelectedHotel(hotel: IHotel): void {
     this.selectedHotel = hotel;
@@ -21,6 +22,10 @@ export class AppComponent {
 
   public setActiveFilter(filter: string): void {
     this.activeFilter = filter;
+  }
+
+  public setSearchValue(value: string): void {
+    this.searchValue = value;
   }
 
 }

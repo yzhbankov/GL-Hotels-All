@@ -1,7 +1,7 @@
 <div [className]="'menu'">
   <div [className]="'row'">
     <div [className]="'col-md-6'">
-      Search
+      <input type="text" placeholder="Search" (change)="setSearchValue($event)"/>
     </div>
     <div [className]="'col-md-6'">
       <div [className]="'row'">

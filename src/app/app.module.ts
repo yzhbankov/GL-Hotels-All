@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
-import { FilterPipe } from './filter.pipe';
+import { FilterPipe, SearchPipe } from './filter.pipe';
 
 @NgModule({
   declarations: [
@@ -16,6 +16,7 @@ import { FilterPipe } from './filter.pipe';
     FooterComponent,
     MenuComponent,
     FilterPipe,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,

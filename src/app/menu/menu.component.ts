@@ -11,7 +11,8 @@ export class MenuComponent implements OnInit {
 
   public filters: string[] = Object.values(FILTERS);
 
-  @Output() activeFilter: EventEmitter<string> = new EventEmitter();
+  @Output() public activeFilter: EventEmitter<string> = new EventEmitter();
+  @Output() public searchValue: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
@@ -20,6 +21,10 @@ export class MenuComponent implements OnInit {
 
   public setActiveFilter(filter: string): void {
     this.activeFilter.emit(filter);
+  }
+
+  public setSearchValue(event: any): void {
+    this.searchValue.emit(event.target.value)
   }
 
 }
