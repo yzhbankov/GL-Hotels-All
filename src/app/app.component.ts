@@ -1,10 +1,10 @@
 import { from, of } from 'rxjs';
-import { concatMap, delay, map, mapTo } from 'rxjs/internal/operators';
+import { concatMap, delay } from 'rxjs/internal/operators';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 import { IHotel } from './hotels/models';
-import { Hotels } from './hotels/mock-hotels';
+import { hotels } from './hotels/mock-hotels';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +13,11 @@ import { Hotels } from './hotels/mock-hotels';
 })
 
 export class AppComponent implements OnInit {
-  public title = 'GL-Hotels-App';
+  public title: string = 'GL-Hotels-App';
 
   public hotels: IHotel[] = [];
   public favorites: IHotel[] = [];
-  public selectedHotel: IHotel = Hotels[0];
+  public selectedHotel: IHotel = hotels[0];
   public isDataLoading: boolean = true;
   public activeFilter: string;
   public searchValue: string;
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit {
   }
 
   public addHotelToFavorites(hotel: IHotel): void {
-    const hasInFavorites: boolean = this.favorites.some((favorite_hotel: IHotel) => favorite_hotel.title === hotel.title);
+    const hasInFavorites: boolean = this.favorites.some((favoriteHotel: IHotel) => favoriteHotel.title === hotel.title);
     if (!hasInFavorites) {
       this.favorites.push(hotel);
       this.toastr.info('', `Hotel "${hotel.title}" added to favorites!`);
@@ -48,15 +48,15 @@ export class AppComponent implements OnInit {
   }
 
   public removeHotelFromFavorites(hotel: IHotel): void {
-    const itemIndex = this.favorites.findIndex((favorite_hotel: IHotel) => favorite_hotel.title === hotel.title);
+    const itemIndex: number = this.favorites.findIndex((favoriteHotel: IHotel) => favoriteHotel.title === hotel.title);
 
     this.favorites.splice(itemIndex, 1);
     this.toastr.info('', `Hotel "${hotel.title}" removed from favorites!`);
   }
 
   public ngOnInit(): void {
-    from(Hotels).pipe(
-      concatMap(item => of(item).pipe(delay(1000)))
+    from(hotels).pipe(
+      concatMap((item: IHotel) => of(item).pipe(delay(1000)))
     ).subscribe((hotel: IHotel) => {
         this.hotels.push(hotel);
       },

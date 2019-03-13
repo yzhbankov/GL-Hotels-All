@@ -1,12 +1,13 @@
-import { IHotel } from './models'
+import { IHotel } from './models';
 
-export const Hotels: IHotel[] = [
+export const hotels: IHotel[] = [
   {
     id: 0,
     title: 'Universal Cabana',
     address: 'Orlando',
-    description: `Redefine family time with a stay in one of these affordable suites. From the two 40” TVs to the 
-    convenient kitchenette to the brilliant bathroom area – designed to let three people get ready at once – they 
+    description: `Redefine family time with a stay in one of these affordable suites. From the two 40”
+    TVs to the convenient kitchenette to the brilliant bathroom area – designed to let three people get
+     ready at once – they
     give everyone more room to relax.`,
     phone: '+3242353434',
     picture: 'assets/images/universal_cabana_common.jpg',
@@ -31,7 +32,8 @@ export const Hotels: IHotel[] = [
     title: 'Barut Resort',
     address: 'Kemer',
     description: `This hotel fits in nicely between mountains and the Med. The thin strip of private beach comes with
-     loungers and its very own pier. If you want shops, bars and restaurants, Kemer’s centre is about 10 minutes’ walk away.`,
+     loungers and its very own pier. If you want shops, bars and restaurants, Kemer’s centre is about 10 minutes’ walk
+      away.`,
     phone: '+3242353434',
     picture: 'assets/images/barut_kemer_common.jpg',
     photos: [

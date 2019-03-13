@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IHotel } from '../models';
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',

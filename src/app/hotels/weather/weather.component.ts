@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IWeather } from '../models';
 
 @Component({
@@ -9,7 +9,7 @@ import { IWeather } from '../models';
 export class WeatherComponent implements OnInit {
   @Input() public weather: IWeather;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
 }

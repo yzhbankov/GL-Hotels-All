@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IHotel } from '../models';
 
 @Component({
@@ -8,20 +8,20 @@ import { IHotel } from '../models';
 })
 export class ListComponent implements OnInit {
 
-  @Input() hotels: IHotel[];
-  @Input() favorites: IHotel[];
-  @Input() isDataLoading: boolean;
-  @Input() addHotelToFavorites: Function;
-  @Input() removeHotelFromFavorites: Function;
+  @Input() public hotels: IHotel[];
+  @Input() public favorites: IHotel[];
+  @Input() public isDataLoading: boolean;
+  @Input() public addHotelToFavorites: Function;
+  @Input() public removeHotelFromFavorites: Function;
 
-  @Output() hotel: EventEmitter<IHotel> = new EventEmitter();
+  @Output() public hotel: EventEmitter<IHotel> = new EventEmitter();
 
   public selectHotel(hotel: IHotel): void {
-    this.hotel.emit(hotel)
+    this.hotel.emit(hotel);
   }
 
   public hotelInFavorites(hotel: IHotel): boolean {
-    return this.favorites.some((favorite_hotel: IHotel) => favorite_hotel.title ===  hotel.title)
+    return this.favorites.some((favoriteHotel: IHotel) => favoriteHotel.title ===  hotel.title);
   }
 
   public ngOnInit(): void {  }

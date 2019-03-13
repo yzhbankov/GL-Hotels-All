@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IProfile } from '../models';
 
 @Component({
@@ -10,7 +10,7 @@ export class ProfileComponent implements OnInit {
   @Input()
   public profile: IProfile;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
 }
