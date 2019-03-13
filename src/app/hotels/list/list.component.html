@@ -1,11 +1,11 @@
-<div [className]="'hotel-list'">
-  <div [className]="'hotel-list-loading'">
+<div class="hotel-list">
+  <div class="hotel-list-loading">
     <div *ngIf="isDataLoading;">
-      <div [className]="'loader'"></div>
+      <div class="loader"></div>
       <div>Loading...</div>
     </div>
   </div>
-  <mat-list [className]="'items-list'">
+  <mat-list class="items-list">
     <mat-list-item *ngFor="let hotel of hotels; let i = index;">
       <app-hotel
         [index]="i"

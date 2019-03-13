@@ -8,10 +8,34 @@
   background-color: #d4d9be;
 }
 
+.menu-content {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.menu-search input {
+  border-radius: 5px;
+}
+
 .menu-filter {
-  width: 20px;
+  min-width: 40px;
+  margin-right: 10px;
+  margin-left: 10px;
   text-align: center;
   cursor: pointer;
-  border-right: black solid 1px;
-  border-left: black solid 1px;
+
+  .checked {
+    min-width: 40px;
+    border-radius: 5px;
+    background-color: #aeb39b;
+  }
+
+  button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+  }
 }

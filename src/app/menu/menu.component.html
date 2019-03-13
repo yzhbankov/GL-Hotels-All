@@ -1,12 +1,13 @@
-<div [className]="'menu'">
-  <div [className]="'row'">
-    <div [className]="'col-md-4'">
+<div class="menu">
+  <div class="row menu-content">
+    <div class="col-md-4 menu-search">
       <input type="text" placeholder="Search" (change)="setSearchValue($event)"/>
     </div>
-    <div [className]="'col-md-8'">
-      <div [className]="'row'">
-        <div [className]="'col-md-2'" *ngFor="let filter of filters">
-          <span [className]="'menu-filter'" (click)="setActiveFilter(filter)">{{filter}}</span>
+    <div  class="col-md-1"></div>
+    <div class="col-md-7 menu-filter-buttons">
+      <div class="row text-center">
+        <div class="menu-filter" *ngFor="let filter of filters">
+          <button [className]="selectedFilter === filter ? 'checked' : ''" (click)="setActiveFilter(filter)">{{filter}}</button>
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { FILTERS } from '../../common/constants';
 
 @Component({
@@ -10,6 +10,7 @@ import { FILTERS } from '../../common/constants';
 export class MenuComponent implements OnInit {
 
   public filters: string[] = Object.values(FILTERS);
+  @Input() public selectedFilter: string;
 
   @Output() public activeFilter: EventEmitter<string> = new EventEmitter();
   @Output() public searchValue: EventEmitter<string> = new EventEmitter();

@@ -3,6 +3,7 @@
 <app-details [hotel]="selectedHotel"></app-details>
 
 <app-menu
+  [selectedFilter]="activeFilter"
   (activeFilter)="setActiveFilter($event)"
   (searchValue)="setSearchValue($event)"
 ></app-menu>

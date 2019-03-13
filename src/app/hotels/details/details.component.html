@@ -1,15 +1,15 @@
-<div [className]="'hotel-details'">
-  <div *ngFor="let imgPath of hotel.photos" [className]="'hotels-pictures'">
+<div class="hotel-details'">
+  <div *ngFor="let imgPath of hotel.photos" class="hotels-pictures">
     <img src="{{imgPath}}">
   </div>
-  <div [className]="'row'">
-    <div [className]="'col-md-2'"></div>
-    <div [className]="'col-md-4'">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
       <app-profile [profile]="hotel.profile"></app-profile>
     </div>
-    <div [className]="'col-md-4'">
+    <div class="col-md-4">
       <app-weather [weather]="hotel.weather"></app-weather>
     </div>
-    <div [className]="'col-md-2'"></div>
+    <div class="col-md-2"></div>
   </div>
 </div>

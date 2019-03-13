@@ -1,25 +1,25 @@
-<div [className]="'hotel-list-item row'" [ngStyle]="{'background-color': index  % 2 === 0 ? '#18a3ed':'#1891D9'}">
-  <div [className]="'col-md-9'">
+<div class="hotel-list-item row" [ngStyle]="{'background-color': index  % 2 === 0 ? '#18a3ed':'#1891D9'}">
+  <div class="col-md-9">
     <h5>{{hotel.title}}</h5>
 
-    <div [className]="'row'">
-      <div [className]="'col-md-6'">Address:</div>
-      <div [className]="'col-md-6'">{{hotel.address}}</div>
+    <div class="row">
+      <div class="col-md-6">Address:</div>
+      <div class="col-md-6">{{hotel.address}}</div>
     </div>
 
-    <div [className]="'row'">
-      <div [className]="'col-md-6'">Phone:</div>
-      <div [className]="'col-md-6'">{{hotel.phone}}</div>
+    <div class="row">
+      <div class="col-md-6">Phone:</div>
+      <div class="col-md-6">{{hotel.phone}}</div>
     </div>
 
-    <div [className]="'row'">
-      <div [className]="'col-md-12'">{{hotel.description}}</div>
+    <div class="row">
+      <div class="col-md-12">{{hotel.description}}</div>
     </div>
   </div>
 
-  <div [className]="'col-md-3'">
-    <div [className]="'hotel-picture'"><img src="{{hotel.picture}}"></div>
-    <div [className]="'hotel-favorites-btn'">
+  <div class="col-md-3">
+    <div class="hotel-picture"><img src="{{hotel.picture}}"></div>
+    <div class="hotel-favorites-btn">
       <div *ngIf="!inFavorites; else elseBlock">
         <button (click)="addHotel(hotel, $event)">Add</button>
       </div>
