@@ -1,10 +1,10 @@
-import {from, of} from 'rxjs';
-import {delay, concatMap, mapTo, map} from 'rxjs/internal/operators'
-import {Component, OnInit} from '@angular/core';
-import {ToastrService} from 'ngx-toastr';
+import { from, of } from 'rxjs';
+import { concatMap, delay, map, mapTo } from 'rxjs/internal/operators';
+import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
-import {IHotel} from './hotels/models';
-import {Hotels} from './hotels/mock-hotels';
+import { IHotel } from './hotels/models';
+import { Hotels } from './hotels/mock-hotels';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ import {Hotels} from './hotels/mock-hotels';
 })
 
 export class AppComponent implements OnInit {
-  title = 'GL-Hotels-App';
+  public title = 'GL-Hotels-App';
 
   public hotels: IHotel[] = [];
   public favorites: IHotel[] = [];
@@ -21,6 +21,11 @@ export class AppComponent implements OnInit {
   public isDataLoading: boolean = true;
   public activeFilter: string;
   public searchValue: string;
+
+  public constructor(private toastr: ToastrService) {
+    this.removeHotelFromFavorites = this.removeHotelFromFavorites.bind(this);
+    this.addHotelToFavorites = this.addHotelToFavorites.bind(this);
+  }
 
   public displaySelectedHotel(hotel: IHotel): void {
     this.selectedHotel = hotel;
@@ -35,7 +40,7 @@ export class AppComponent implements OnInit {
   }
 
   public addHotelToFavorites(hotel: IHotel): void {
-    const hasInFavorites = this.favorites.some((favorite_hotel: IHotel) => favorite_hotel.title === hotel.title);
+    const hasInFavorites: boolean = this.favorites.some((favorite_hotel: IHotel) => favorite_hotel.title === hotel.title);
     if (!hasInFavorites) {
       this.favorites.push(hotel);
       this.toastr.info('', `Hotel "${hotel.title}" added to favorites!`);
@@ -49,21 +54,16 @@ export class AppComponent implements OnInit {
     this.toastr.info('', `Hotel "${hotel.title}" removed from favorites!`);
   }
 
-  constructor(private toastr: ToastrService) {
-    this.removeHotelFromFavorites = this.removeHotelFromFavorites.bind(this)
-    this.addHotelToFavorites = this.addHotelToFavorites.bind(this)
-  }
-
   public ngOnInit(): void {
     from(Hotels).pipe(
       concatMap(item => of(item).pipe(delay(1000)))
     ).subscribe((hotel: IHotel) => {
-        this.hotels.push(hotel)
+        this.hotels.push(hotel);
       },
       () => {
       },
       () => {
-        this.isDataLoading = false
+        this.isDataLoading = false;
       });
   }
 
