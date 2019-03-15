@@ -23,6 +23,10 @@ export class FavoritesService {
     return this.favorites;
   }
 
+  public getFavoritesCount(): number {
+    return this.favorites.length;
+  }
+
   public removeFromFavorites(hotel: IHotel): void {
     const itemIndex: number = this.favorites.findIndex((favoriteHotel: IHotel) => favoriteHotel.title === hotel.title);
 

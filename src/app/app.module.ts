@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { FilterPipe, SearchPipe } from './filter.pipe';
 import { FavoritesService } from './favorites.service';
+import { FavoritesComponent } from './header/favorites/favorites.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { FavoritesService } from './favorites.service';
     MenuComponent,
     FilterPipe,
     SearchPipe,
+    FavoritesComponent,
   ],
   imports: [
     BrowserModule,
