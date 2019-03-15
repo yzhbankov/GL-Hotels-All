@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { IHotel } from './hotels/models';
-import { FILTERS } from '../common/constants';
 import { getNumberValueFromString } from '../common/utils';
 
 @Pipe({
@@ -9,12 +8,8 @@ import { getNumberValueFromString } from '../common/utils';
 
 export class FilterPipe implements PipeTransform {
 
-  transform(hotels: IHotel[], favorites: IHotel[], filter: string): IHotel[] {
-    if (filter === FILTERS.SHOW_FAVORITES) {
-      return favorites
-    }
-
-    const numericStars = getNumberValueFromString(filter);
+  public transform(hotels: IHotel[], filter: string): IHotel[] {
+    const numericStars: number = getNumberValueFromString(filter);
 
     if (!numericStars)  {
       return hotels;
@@ -22,7 +17,7 @@ export class FilterPipe implements PipeTransform {
 
     return hotels.filter((hotel: IHotel) => {
       return hotel.stars === numericStars;
-    })
+    });
   }
 
 }
@@ -33,7 +28,7 @@ export class FilterPipe implements PipeTransform {
 
 export class SearchPipe implements PipeTransform {
 
-  transform(hotels: IHotel[], searchValue: string): IHotel[] {
+  public transform(hotels: IHotel[], searchValue: string): IHotel[] {
 
     if (!searchValue || searchValue.length === 0)  {
       return hotels;
@@ -41,7 +36,7 @@ export class SearchPipe implements PipeTransform {
 
     return hotels.filter((hotel: IHotel) => {
       return hotel.title.indexOf(searchValue) !== -1;
-    })
+    });
   }
 
 }

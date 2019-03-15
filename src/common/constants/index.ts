@@ -3,7 +3,6 @@ interface IFilters {
 }
 
 export const FILTERS: IFilters = {
-  SHOW_FAVORITES: 'Favorites',
   SHOW_ALL: 'All',
   SHOW_THREE_STARS: '3*',
   SHOW_FOUR_STARS: '4*',

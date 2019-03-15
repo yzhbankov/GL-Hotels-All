@@ -9,10 +9,7 @@
 ></app-menu>
 
 <app-list
-  [hotels]="hotels | filter: favorites: activeFilter | search: searchValue"
-  [favorites]="favorites"
-  [addHotelToFavorites]="addHotelToFavorites"
-  [removeHotelFromFavorites]="removeHotelFromFavorites"
+  [hotels]="hotels | filter: activeFilter | search: searchValue"
   [isDataLoading]="isDataLoading"
   (hotel)="displaySelectedHotel($event)"
 ></app-list>

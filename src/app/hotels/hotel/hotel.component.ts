@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FavoritesService } from '../../favorites.service';
 import { IHotel } from '../models';
 
 @Component({
@@ -10,20 +11,19 @@ export class HotelComponent implements OnInit {
 
   @Input() public hotel: IHotel;
   @Input() public index: number;
-  @Input() public inFavorites: boolean;
-  @Input() public addHotelToFavorites: Function;
-  @Input() public removeHotelFromFavorites: Function;
+
+  public constructor(private favoriteService: FavoritesService) { }
 
   public addHotel(hotel: IHotel, event: Event): void {
     event.stopPropagation();
 
-    this.addHotelToFavorites(hotel);
+    this.favoriteService.addFavorites(hotel);
   }
 
   public removeHotel(hotel: IHotel, event: Event): void {
     event.stopPropagation();
 
-    this.removeHotelFromFavorites(hotel);
+    this.favoriteService.removeFromFavorites(hotel);
   }
 
   public ngOnInit(): void {  }

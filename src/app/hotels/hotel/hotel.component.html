@@ -20,7 +20,7 @@
   <div class="col-md-3">
     <div class="hotel-picture"><img src="{{hotel.picture}}"></div>
     <div class="hotel-favorites-btn">
-      <div *ngIf="!inFavorites; else elseBlock">
+      <div *ngIf="!favoriteService.hotelInFavorites(hotel); else elseBlock">
         <button (click)="addHotel(hotel, $event)">Add</button>
       </div>
       <ng-template #elseBlock>

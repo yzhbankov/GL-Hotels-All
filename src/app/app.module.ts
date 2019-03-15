@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { FilterPipe, SearchPipe } from './filter.pipe';
+import { FavoritesService } from './favorites.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { FilterPipe, SearchPipe } from './filter.pipe';
     HotelsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [FavoritesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
