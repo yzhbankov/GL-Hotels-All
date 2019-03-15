@@ -1,0 +1,15 @@
+<mat-toolbar color="blueGrey">
+  <mat-toolbar-row>
+    <span>The Hotels Watcher</span>
+    <span class="example-spacer"></span>
+    <span style="color:red">{{getFavoritesCount() || ''}}</span>
+
+    <mat-icon
+      (click)="handleFavoriteClick()"
+      class="favorites-icon"
+      matTooltip="Favorites">{{hasFavorites() ? 'favorite' : 'favorite_border'}}
+    </mat-icon>
+
+    <app-favorites></app-favorites>
+  </mat-toolbar-row>
+</mat-toolbar>

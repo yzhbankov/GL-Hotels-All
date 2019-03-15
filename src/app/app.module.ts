@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -12,7 +16,8 @@ import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { FilterPipe, SearchPipe } from './filter.pipe';
 import { FavoritesService } from './favorites.service';
-import { FavoritesComponent } from './header/favorites/favorites.component';
+import { FavoritesComponent } from './navbar/favorites/favorites.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -23,15 +28,22 @@ import { FavoritesComponent } from './header/favorites/favorites.component';
     FilterPipe,
     SearchPipe,
     FavoritesComponent,
+    NavbarComponent,
   ],
   imports: [
+    MatTooltipModule,
+    MatDialogModule,
+    MatIconModule,
+    MatToolbarModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HotelsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right'
+    }),
   ],
-  providers: [FavoritesService],
+  providers: [FavoritesService, { provide: MatDialogRef, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
