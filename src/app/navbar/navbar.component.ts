@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from '../favorites.service';
+import { MatDialog, MatDialogRef } from '@angular/material';
 import { FavoritesComponent } from './favorites/favorites.component';
 
 @Component({
@@ -9,7 +10,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 })
 export class NavbarComponent implements OnInit {
 
-  public constructor(private favoriteService: FavoritesService) {}
+  public constructor(private favoriteService: FavoritesService, public dialog: MatDialog) {}
 
   public getFavoritesCount(): number {
     return this.favoriteService.getFavoritesCount();
@@ -20,7 +21,14 @@ export class NavbarComponent implements OnInit {
   }
 
   public handleFavoriteClick(): void {
-    alert('click')
+      const dialogRef = this.dialog.open(FavoritesComponent, {
+        width: '600px',
+        data: {}
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
   public ngOnInit(): void {}

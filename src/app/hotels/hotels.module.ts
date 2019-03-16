@@ -14,6 +14,6 @@ import { DetailsComponent } from './details/details.component';
     CommonModule,
     MatListModule,
   ],
-  exports: [ListComponent, DetailsComponent]
+  exports: [ListComponent, DetailsComponent, HotelComponent]
 })
 export class HotelsModule { }

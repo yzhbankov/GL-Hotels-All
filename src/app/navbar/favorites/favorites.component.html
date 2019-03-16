@@ -1,2 +1,21 @@
-<div>
+<h1 mat-dialog-title>Favorites:</h1>
+
+<span *ngIf="favorites.length > 0; else elseBlock">
+<mat-list [className]="'items-list'">
+  <mat-list-item *ngFor="let hotel of favorites; let i = index;">
+    <app-hotel
+      [index]="i"
+      [hotel]="hotel"
+    ></app-hotel>
+    <hr/>
+  </mat-list-item>
+</mat-list>
+</span>
+
+<ng-template #elseBlock>
+  <div>The favorites is empty</div>
+</ng-template>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onCloseClick()">Close</button>
 </div>
