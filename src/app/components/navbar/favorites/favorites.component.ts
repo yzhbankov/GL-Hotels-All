@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { FavoritesService } from '../../favorites.service';
-import { IHotel } from '../../hotels/models';
+import { FavoritesService } from '../../../services/favorites.service';
+import { IHotel } from '../../../models';
 
 @Component({
   selector: 'app-favorites',

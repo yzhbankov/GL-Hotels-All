@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FavoritesService } from '../../favorites.service';
-import { IHotel } from '../models';
+import { FavoritesService } from '../../../services/favorites.service';
+import { IHotel } from '../../../models';
 
 @Component({
   selector: 'app-hotel',

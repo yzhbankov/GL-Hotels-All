@@ -10,16 +10,17 @@ import { MatListModule } from '@angular/material';
 
 
 import { AppRoutingModule } from './app-routing.module';
-import { HotelsModule } from './hotels/hotels.module';
-import { FilterPipe, SearchPipe } from './filter.pipe';
-import { FavoritesService } from './favorites.service';
+import { HotelsModule } from './components/hotels/hotels.module';
+import { FilterPipe, SearchPipe } from './pipes/filter.pipe';
+import { FavoritesService } from './services/favorites.service';
+import { HotelsService } from './services/hotels.service';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { FavoritesComponent } from './navbar/favorites/favorites.component';
-import { MenuComponent } from './menu/menu.component';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FavoritesComponent } from './components/navbar/favorites/favorites.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   entryComponents: [FavoritesComponent],
@@ -47,7 +48,7 @@ import { MenuComponent } from './menu/menu.component';
       positionClass: 'toast-bottom-right'
     }),
   ],
-  providers: [FavoritesService, { provide: MatDialogRef, useValue: {} }],
+  providers: [HotelsService, FavoritesService, { provide: MatDialogRef, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

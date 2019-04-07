@@ -1,10 +1,10 @@
-import { from, of } from 'rxjs';
-import { concatMap, delay } from 'rxjs/internal/operators';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
-import { IHotel } from './hotels/models';
-import { hotels } from './hotels/mock-hotels';
+import { IHotel } from './models';
+import { hotels } from './components/hotels/mock-hotels';
+import { HotelsService } from './services/hotels.service';
 
 @Component({
   selector: 'app-root',
@@ -15,13 +15,12 @@ import { hotels } from './hotels/mock-hotels';
 export class AppComponent implements OnInit {
   public title: string = 'GL-Hotels-App';
 
-  public hotels: IHotel[] = [];
+  public hotels: Observable<IHotel[]>;
   public selectedHotel: IHotel = hotels[0];
   public isDataLoading: boolean = true;
   public activeFilter: string;
   public searchValue: string;
-
-  public constructor(private toastr: ToastrService) {
+  public constructor(private toastr: ToastrService, private hotelsService: HotelsService ) {
   }
 
   public displaySelectedHotel(hotel: IHotel): void {
@@ -37,11 +36,12 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    from(hotels).pipe(
-      concatMap((item: IHotel) => of(item).pipe(delay(1000)))
-    ).subscribe((hotel: IHotel) => {
-        this.hotels.push(hotel);
-      },
+    this.hotels = this.hotelsService.hotels; // subscribe to entire collection
+    this.hotelsService.loadAll();
+
+    this.hotels
+      .subscribe(() => {
+        },
       () => {
       },
       () => {

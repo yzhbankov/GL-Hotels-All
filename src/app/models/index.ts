@@ -22,3 +22,13 @@ export interface IHotel {
   profile: IProfile;
   stars: number;
 }
+
+export interface IHotelsResponse {
+  _id: string;
+  hotel: IHotel;
+  createdBy: {
+    email: string
+  };
+  createdAt: string;
+  updatedAt: string;
+}

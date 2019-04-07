@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IHotel } from '../models';
+import { IHotel } from '../../../models';
 
 @Component({
   selector: 'app-list',

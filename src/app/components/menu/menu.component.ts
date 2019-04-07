@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FILTERS } from '../../common/constants';
+import { FILTERS } from '../../../common/constants';
 
 @Component({
   selector: 'app-menu',

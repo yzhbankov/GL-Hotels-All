@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { IHotel } from './hotels/models';
-import { getNumberValueFromString } from '../common/utils';
+import { IHotel } from '../models';
+import { getNumberValueFromString } from '../../common/utils';
 
 @Pipe({
   name: 'filter'

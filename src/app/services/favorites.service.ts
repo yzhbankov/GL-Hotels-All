@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { IHotel } from './hotels/models';
+import { IHotel } from '../models';
 
 @Injectable({
   providedIn: 'root'
