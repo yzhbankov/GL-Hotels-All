@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
 import { IHotel } from './models';
-import { hotels } from './components/hotels/mock-hotels';
 import { HotelsService } from './services/hotels.service';
 
 @Component({
@@ -13,10 +12,8 @@ import { HotelsService } from './services/hotels.service';
 })
 
 export class AppComponent implements OnInit {
-  public title: string = 'GL-Hotels-App';
-
   public hotels: Observable<IHotel[]>;
-  public selectedHotel: IHotel = hotels[0];
+  public selectedHotel: IHotel;
   public isDataLoading: boolean = true;
   public activeFilter: string;
   public searchValue: string;
@@ -40,7 +37,10 @@ export class AppComponent implements OnInit {
     this.hotelsService.loadAll();
 
     this.hotels
-      .subscribe(() => {
+      .subscribe((hotels: IHotel[]) => {
+          if (!this.selectedHotel && Array.isArray(hotels) && hotels.length > 0) {
+            this.selectedHotel = hotels[0];
+          }
         },
       () => {
       },

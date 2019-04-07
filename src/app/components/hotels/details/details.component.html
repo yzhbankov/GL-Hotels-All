@@ -1,4 +1,4 @@
-<div class="hotel-details">
+<div class="hotel-details" *ngIf="hotel; else elseBlock">
   <div *ngFor="let imgPath of hotel.photos" class="hotels-pictures">
     <img src="{{imgPath}}">
   </div>
@@ -13,3 +13,7 @@
     <div class="col-md-2"></div>
   </div>
 </div>
+
+<ng-template #elseBlock>
+  <div class="hotel-details"></div>
+</ng-template>

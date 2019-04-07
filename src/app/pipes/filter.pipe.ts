@@ -9,6 +9,7 @@ import { getNumberValueFromString } from '../../common/utils';
 export class FilterPipe implements PipeTransform {
 
   public transform(hotels: IHotel[], filter: string): IHotel[] {
+    console.log('hotels ', hotels)
     const numericStars: number = getNumberValueFromString(filter);
 
     if (!numericStars)  {

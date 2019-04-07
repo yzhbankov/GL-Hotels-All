@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ajax, AjaxResponse } from 'rxjs/ajax';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { IHotel, IHotelsResponse } from '../models';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class HotelsService {
   };
 
   public constructor() {
-    this.hotelsUrl = 'https://gl-hotels.herokuapp.com';
+    this.hotelsUrl = environment.apiUrl;
     this.dataStore = { hotels: [] };
     this._hotels = new BehaviorSubject([]);
     this.hotels = this._hotels.asObservable();

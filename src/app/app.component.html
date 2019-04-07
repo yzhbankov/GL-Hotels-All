@@ -1,6 +1,13 @@
 <app-navbar></app-navbar>
 <app-header></app-header>
 
+<div *ngIf="isDataLoading;">
+  <div class="hotel-loading">
+    <div class="loader"></div>
+    <div>Loading...</div>
+  </div>
+</div>
+
 <app-details [hotel]="selectedHotel"></app-details>
 
 <app-menu
