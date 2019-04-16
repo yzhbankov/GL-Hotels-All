@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ajax, AjaxResponse } from 'rxjs/ajax';
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { IHotel, IHotelsResponse } from '../models';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { IHotel, IHotelsResponse, ILoginResponse } from '../models';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -16,7 +18,7 @@ export class HotelsService {
     hotels: IHotel[]
   };
 
-  public constructor() {
+  public constructor(private http: HttpClient) {
     this.hotelsUrl = environment.apiUrl;
     this.dataStore = { hotels: [] };
     this._hotels = new BehaviorSubject([]);
@@ -24,32 +26,40 @@ export class HotelsService {
   }
 
   public loadAll(): void {
-    ajax({
-      url: `${this.hotelsUrl}/auth/login`,
-      method: 'POST',
-      headers: { },
-      body: { password: 'admin', email: 'admin@admin.com'}
-    }).pipe(
-      map((res: AjaxResponse) => {
-        const { response } = res;
-        return response.token;
-      }),
-      mergeMap((token: string) => ajax({
-        url: `${this.hotelsUrl}/hotels`,
-        method: 'GET',
-        headers: { Authorization: `Bearer ${token}` },
-        body: { }
-      })),
-      catchError((error: Error) => {
-        console.error('errors: ', error);
-        return of(error);
-      })
-    )
-      .subscribe((res: AjaxResponse) => {
-        this.dataStore.hotels = res.response.map((responseHotel: IHotelsResponse) => responseHotel.hotel);
-        this._hotels.next(Object.assign({}, this.dataStore).hotels);
-        this._hotels.complete();
-      }, (error: Error) => console.error('Could not load hotels.'));
+    this.http.post<ILoginResponse>(
+      `${this.hotelsUrl}/auth/login`,
+      { password: 'admin', email: 'admin@admin.com'},
+      { headers: {} }
+      ).subscribe((response: ILoginResponse) => {
+        console.log('response ', response);
+    });
+
+    // ajax({
+    //   url: `${this.hotelsUrl}/auth/login`,
+    //   method: 'POST',
+    //   headers: { },
+    //   body: { password: 'admin', email: 'admin@admin.com'}
+    // }).pipe(
+    //   map((res: AjaxResponse) => {
+    //     const { response } = res;
+    //     return response.token;
+    //   }),
+    //   mergeMap((token: string) => ajax({
+    //     url: `${this.hotelsUrl}/hotels`,
+    //     method: 'GET',
+    //     headers: { Authorization: `Bearer ${token}` },
+    //     body: { }
+    //   })),
+    //   catchError((error: Error) => {
+    //     console.error('errors: ', error);
+    //     return of(error);
+    //   })
+    // )
+    //   .subscribe((res: AjaxResponse) => {
+    //     this.dataStore.hotels = res.response.map((responseHotel: IHotelsResponse) => responseHotel.hotel);
+    //     this._hotels.next(Object.assign({}, this.dataStore).hotels);
+    //     this._hotels.complete();
+    //   }, (error: Error) => console.error('Could not load hotels.'));
   }
 
   // load(id: number | string) {

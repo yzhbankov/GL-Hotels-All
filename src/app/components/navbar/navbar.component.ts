@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from '../../services/favorites.service';
 import { MatDialog, MatDialogRef } from '@angular/material';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +11,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
 })
 export class NavbarComponent implements OnInit {
 
-  public constructor(private favoriteService: FavoritesService, public dialog: MatDialog) {}
+  public constructor(private favoriteService: FavoritesService, public dialog: MatDialog, private auth: AuthService) {}
 
   public getFavoritesCount(): number {
     return this.favoriteService.getFavoritesCount();
@@ -18,6 +19,10 @@ export class NavbarComponent implements OnInit {
 
   public hasFavorites(): boolean {
     return this.favoriteService.getFavoritesCount() > 0;
+  }
+
+  public logOut(): void {
+    this.auth.logOut();
   }
 
   public handleFavoriteClick(): void {

@@ -23,6 +23,25 @@ export interface IHotel {
   stars: number;
 }
 
+export interface ILoginResponse {
+  token: string;
+  user: {
+    _id: string;
+    email: string;
+    createdAt: string;
+    removedAt: string;
+    updatedAt: string;
+    firstName: string;
+    lastName: string;
+    login: string;
+  };
+}
+
+export interface ILoginBody {
+  email: string;
+  password: string;
+}
+
 export interface IHotelsResponse {
   _id: string;
   hotel: IHotel;

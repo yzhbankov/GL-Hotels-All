@@ -3,7 +3,7 @@
     <span>The Hotels Watcher</span>
     <span class="example-spacer"></span>
     <span style="color:red">{{getFavoritesCount() || ''}}</span>
-
+    <button (click)="logOut()">Logout</button>
     <mat-icon
       (click)="handleFavoriteClick()"
       class="favorites-icon"

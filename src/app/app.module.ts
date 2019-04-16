@@ -7,7 +7,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MatListModule } from '@angular/material';
-
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HotelsModule } from './components/hotels/hotels.module';
@@ -16,25 +17,29 @@ import { FavoritesService } from './services/favorites.service';
 import { HotelsService } from './services/hotels.service';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FavoritesComponent } from './components/navbar/favorites/favorites.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { LoginComponent } from './components/login/login.component';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
   entryComponents: [FavoritesComponent],
   declarations: [
     AppComponent,
-    HeaderComponent,
     FooterComponent,
     MenuComponent,
     FilterPipe,
     SearchPipe,
     FavoritesComponent,
     NavbarComponent,
+    LoginComponent,
+    MainComponent,
   ],
   imports: [
+    ReactiveFormsModule,
+    HttpClientModule,
     MatListModule,
     MatTooltipModule,
     MatDialogModule,

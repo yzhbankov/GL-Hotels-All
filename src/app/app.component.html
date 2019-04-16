@@ -1,27 +1,6 @@
 <app-navbar></app-navbar>
-<app-header></app-header>
 
-<div *ngIf="isDataLoading;">
-  <div class="hotel-loading">
-    <div class="loader"></div>
-    <div>Loading...</div>
-  </div>
-</div>
-
-<app-details [hotel]="selectedHotel"></app-details>
-
-<app-menu
-  [selectedFilter]="activeFilter"
-  (activeFilter)="setActiveFilter($event)"
-  (searchValue)="setSearchValue($event)"
-></app-menu>
-
-<app-list
-  [hotels]="hotels | async | filter: activeFilter | search: searchValue"
-  [isDataLoading]="isDataLoading"
-  (hotel)="displaySelectedHotel($event)"
-></app-list>
+<router-outlet></router-outlet>
 
 <app-footer></app-footer>
 
-<router-outlet></router-outlet>
