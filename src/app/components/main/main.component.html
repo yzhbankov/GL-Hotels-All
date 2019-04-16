@@ -14,7 +14,7 @@
 ></app-menu>
 
 <app-list
-  [hotels]="hotels | async | filter: activeFilter | search: searchValue"
+  [hotels]="hotels | filter: activeFilter | search: searchValue"
   [isDataLoading]="isDataLoading"
   (hotel)="displaySelectedHotel($event)"
 ></app-list>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 
 import { IHotel } from '../../models';
 import { ToastrService } from 'ngx-toastr';
@@ -12,12 +11,13 @@ import { HotelsService } from '../../services/hotels.service';
 })
 export class MainComponent implements OnInit {
 
-  public hotels: Observable<IHotel[]>;
+  public hotels: IHotel[];
   public selectedHotel: IHotel;
   public isDataLoading: boolean = true;
   public activeFilter: string;
   public searchValue: string;
-  public constructor(private toastr: ToastrService, private hotelsService: HotelsService ) {
+
+  public constructor(private toastr: ToastrService, private hotelsService: HotelsService) {
   }
 
   public displaySelectedHotel(hotel: IHotel): void {
@@ -33,14 +33,11 @@ export class MainComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.hotels = this.hotelsService.hotels; // subscribe to entire collection
-    this.hotelsService.loadAll();
-
-    this.hotels
-      .subscribe((hotels: IHotel[]) => {
-          if (!this.selectedHotel && Array.isArray(hotels) && hotels.length > 0) {
-            this.selectedHotel = hotels[0];
-          }
+    this.hotelsService.loadAll()
+      .subscribe(
+        (hotels: IHotel[]) => {
+          this.hotels = hotels;
+          this.selectedHotel = hotels[0];
         },
         () => {
         },

@@ -9,6 +9,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatListModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { HotelsModule } from './components/hotels/hotels.module';
@@ -23,6 +25,7 @@ import { FavoritesComponent } from './components/navbar/favorites/favorites.comp
 import { MenuComponent } from './components/menu/menu.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
+import { TokenInterceptor } from './interceprors/token.interceptor';
 
 @NgModule({
   entryComponents: [FavoritesComponent],
@@ -53,7 +56,17 @@ import { MainComponent } from './components/main/main.component';
       positionClass: 'toast-bottom-right'
     }),
   ],
-  providers: [HotelsService, FavoritesService, { provide: MatDialogRef, useValue: {} }],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+    HotelsService,
+    FavoritesService,
+    {provide: MatDialogRef, useValue: {}}
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

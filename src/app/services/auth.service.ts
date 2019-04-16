@@ -42,4 +42,8 @@ export class AuthService {
     sessionStorage.clear();
     this.router.navigate(['login']);
   }
+
+  public getToken(): string {
+    return sessionStorage.getItem('TOKEN');
+  }
 }
