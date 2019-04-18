@@ -21,7 +21,7 @@ export class FavoritesComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.favorites = this.favoriteService.getFavorites();
+    this.favorites = this.favoriteService.getFavoritesHotels();
   }
 
 }

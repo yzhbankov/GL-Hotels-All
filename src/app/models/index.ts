@@ -11,7 +11,7 @@ export interface IProfile {
 }
 
 export interface IHotel {
-  id: number;
+  id: string;
   title: string;
   address: string;
   description: string;
@@ -25,16 +25,7 @@ export interface IHotel {
 
 export interface ILoginResponse {
   token: string;
-  user: {
-    _id: string;
-    email: string;
-    createdAt: string;
-    removedAt: string;
-    updatedAt: string;
-    firstName: string;
-    lastName: string;
-    login: string;
-  };
+  user: IUser;
 }
 
 export interface ILoginBody {
@@ -50,4 +41,25 @@ export interface IHotelsResponse {
   };
   createdAt: string;
   updatedAt: string;
+}
+
+export interface IUserResponse {
+  login: string;
+  avatarUrl: string;
+  hotels: [string];
+  favorites: [string];
+}
+
+
+export interface IUser {
+  _id: string;
+  email: string;
+  createdAt: string;
+  updatedAt: string;
+  removedAt: string;
+  login: string;
+  firstName: string;
+  lastName: string;
+  hotels: [string];
+  favorites: [string];
 }

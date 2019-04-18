@@ -14,16 +14,10 @@ export class HotelComponent implements OnInit {
 
   public constructor(private favoriteService: FavoritesService) { }
 
-  public addHotel(hotel: IHotel, event: Event): void {
+  public handleFavorites(id: string, event: Event): void {
     event.stopPropagation();
 
-    this.favoriteService.addFavorites(hotel);
-  }
-
-  public removeHotel(hotel: IHotel, event: Event): void {
-    event.stopPropagation();
-
-    this.favoriteService.removeFromFavorites(hotel);
+    this.favoriteService.handleFavorites(id);
   }
 
   public ngOnInit(): void {  }

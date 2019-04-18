@@ -10,22 +10,30 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class HotelsService {
-  private hotelsUrl: string;
+  private baseUrl: string;
   private dataStore: {
     hotels: IHotel[]
   };
 
   public constructor(private http: HttpClient) {
-    this.hotelsUrl = environment.apiUrl;
+    this.baseUrl = environment.apiUrl;
     this.dataStore = { hotels: [] };
+  }
+
+  public getAllHotels(): IHotel[] {
+    return this.dataStore.hotels;
+  }
+
+  public getHotelById(id: string): IHotel {
+    return this.dataStore.hotels.find((hotel: IHotel) => hotel.id === id);
   }
 
   public loadAll(): Observable<IHotel[]> {
     return this.http
-      .get<IHotelsResponse[]>( `${this.hotelsUrl}/hotels`)
+      .get<IHotelsResponse[]>( `${this.baseUrl}/hotels`)
       .pipe(
         map((response: IHotelsResponse[]) => {
-          const hotels: IHotel[] = response.map((_hotel: IHotelsResponse) => _hotel.hotel)
+          const hotels: IHotel[] = response.map((_hotel: IHotelsResponse) => ({ ..._hotel.hotel, id: _hotel._id }));
           this.dataStore.hotels = hotels;
           return hotels;
         })
@@ -34,7 +42,7 @@ export class HotelsService {
 
   public loadById(id: string): Observable<IHotel> {
     return this.http
-      .get<IHotelsResponse>( `${this.hotelsUrl}/hotels/${id}`)
+      .get<IHotelsResponse>( `${this.baseUrl}/hotels/${id}`)
       .pipe(
         map((response: IHotelsResponse) => {
           return response.hotel;

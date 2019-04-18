@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { IHotel } from '../../models';
 import { ToastrService } from 'ngx-toastr';
 import { HotelsService } from '../../services/hotels.service';
+import { FavoritesService } from '../../services/favorites.service';
 
 @Component({
   selector: 'app-main',
@@ -17,7 +18,7 @@ export class MainComponent implements OnInit {
   public activeFilter: string;
   public searchValue: string;
 
-  public constructor(private toastr: ToastrService, private hotelsService: HotelsService) {
+  public constructor(private toastr: ToastrService, private hotelsService: HotelsService, private favoritesService: FavoritesService ) {
   }
 
   public displaySelectedHotel(hotel: IHotel): void {
@@ -44,5 +45,10 @@ export class MainComponent implements OnInit {
         () => {
           this.isDataLoading = false;
         });
+
+    this.favoritesService.getUserFavorites()
+      .subscribe((favorites: string[]) => {
+        console.info('favorites', favorites);
+      });
   }
 }
