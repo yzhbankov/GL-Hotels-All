@@ -1,6 +1,7 @@
 <mat-toolbar color="blueGrey">
   <mat-toolbar-row>
-    <span>The Hotels Watcher</span>
+    <span class="nav-icon" routerLink="main">The Hotels Watcher</span>
+    <span class="nav-icon" routerLink="contact">Contact us</span>
     <span class="example-spacer"></span>
     <span style="color:red">{{getFavoritesCount() || ''}}</span>
 
@@ -10,7 +11,7 @@
       matTooltip="Favorites">{{hasFavorites() ? 'favorite' : 'favorite_border'}}
     </mat-icon>
 
-    <button (click)="logOut()">Logout</button>
+    <span class="nav-icon" (click)="logOut()">Logout</span>
 
   </mat-toolbar-row>
 </mat-toolbar>

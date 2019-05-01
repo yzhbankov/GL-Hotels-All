@@ -26,6 +26,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { TokenInterceptor } from './interceprors/token.interceptor';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   entryComponents: [FavoritesComponent],
@@ -39,6 +40,7 @@ import { TokenInterceptor } from './interceprors/token.interceptor';
     NavbarComponent,
     LoginComponent,
     MainComponent,
+    ContactComponent,
   ],
   imports: [
     ReactiveFormsModule,
