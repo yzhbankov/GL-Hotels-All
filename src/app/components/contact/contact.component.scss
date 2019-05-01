@@ -1,8 +1,15 @@
+.contact-component {
+  text-align: center;
+  padding-top: 50px;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
 .contact-form {
-  top: 40%;
-  left: 30%;
-  position: absolute;
   background-color: #84b0deed;
-  width:  600px;
   padding: 20px;
+}
+
+.full-width {
+  width: 90%;
 }
