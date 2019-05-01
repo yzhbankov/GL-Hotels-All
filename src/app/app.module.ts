@@ -17,6 +17,7 @@ import { HotelsModule } from './components/hotels/hotels.module';
 import { FilterPipe, SearchPipe } from './pipes/filter.pipe';
 import { FavoritesService } from './services/favorites.service';
 import { HotelsService } from './services/hotels.service';
+import { AuthGuardService } from './guards/auth.guard';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -68,6 +69,7 @@ import { ContactComponent } from './components/contact/contact.component';
     },
     HotelsService,
     FavoritesService,
+    AuthGuardService,
     {provide: MatDialogRef, useValue: {}}
   ],
   bootstrap: [AppComponent]
