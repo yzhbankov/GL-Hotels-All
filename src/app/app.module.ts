@@ -21,7 +21,8 @@ import { HotelsService } from './services/hotels.service';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FavoritesComponent } from './components/navbar/favorites/favorites.component';
+import { FavoritesModal } from './modals/favorites/favorites.component';
+import { ContactModal } from './modals/contact/contact.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
@@ -29,14 +30,15 @@ import { TokenInterceptor } from './interceprors/token.interceptor';
 import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
-  entryComponents: [FavoritesComponent],
+  entryComponents: [FavoritesModal, ContactModal],
   declarations: [
     AppComponent,
     FooterComponent,
     MenuComponent,
     FilterPipe,
     SearchPipe,
-    FavoritesComponent,
+    FavoritesModal,
+    ContactModal,
     NavbarComponent,
     LoginComponent,
     MainComponent,

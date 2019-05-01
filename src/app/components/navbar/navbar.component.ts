@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from '../../services/favorites.service';
-import { MatDialog, MatDialogRef } from '@angular/material';
-import { FavoritesComponent } from './favorites/favorites.component';
+import { MatDialog } from '@angular/material';
+import { FavoritesModal } from '../../modals/favorites/favorites.component';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public handleFavoriteClick(): void {
-      const dialogRef = this.dialog.open(FavoritesComponent, {
+      const dialogRef = this.dialog.open(FavoritesModal, {
         width: '600px',
         data: {}
       });
