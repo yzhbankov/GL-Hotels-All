@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import {UserLogin, UserLogout} from '../store/actions/user.actions';
+import { UserLogin, UserLogout } from '../store/actions/user.actions';
 import { ILoginBody, ILoginResponse, IUser } from '../models';
 import { environment } from '../../environments/environment';
 

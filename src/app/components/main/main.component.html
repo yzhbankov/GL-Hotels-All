@@ -1,11 +1,11 @@
-<div *ngIf="isDataLoading;">
+<div *ngIf="!isDataLoading$ | async">
   <div class="hotel-loading">
     <div class="loader"></div>
     <div>Loading...</div>
   </div>
 </div>
 
-<app-details [hotel]="selectedHotel"></app-details>
+<app-details [hotel]="selectedHotel$ | async"></app-details>
 
 <app-menu
   [selectedFilter]="activeFilter"
@@ -14,7 +14,6 @@
 ></app-menu>
 
 <app-list
-  [hotels]="hotels | filter: activeFilter | search: searchValue"
-  [isDataLoading]="isDataLoading"
-  (hotel)="displaySelectedHotel($event)"
+  [hotels]="hotels$ | async | filter: activeFilter | search: searchValue"
+  [isDataLoading]="!isDataLoading$ | async"
 ></app-list>

@@ -5,6 +5,12 @@ export enum ActionTypes {
   SET = '[Hotels] Set',
   CLEAR = '[Hotels] Clear',
   UPDATE = '[Hotels] Update',
+  SELECT_HOTEL = '[Hotels] Select hotel',
+  LOAD_FROM_SERVER = '[Hotels] Load From Server',
+}
+
+export class HotelsLoadFromServer implements Action {
+  readonly type = ActionTypes.LOAD_FROM_SERVER;
 }
 
 export class HotelsSet implements Action {
@@ -21,5 +27,10 @@ export class HotelsUpdate implements Action {
   constructor (public payload: IHotel ) {}
 }
 
+export class HotelsSelect implements Action {
+  readonly type = ActionTypes.SELECT_HOTEL;
+  constructor (public payload: IHotel ) {}
+}
 
-export type ActionsUnion = HotelsSet | HotelsClear | HotelsUpdate;
+
+export type ActionsUnion = HotelsSet | HotelsClear | HotelsUpdate | HotelsSelect;

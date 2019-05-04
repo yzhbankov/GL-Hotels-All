@@ -13,6 +13,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { storeLogger } from 'ngrx-store-logger';
+import { EffectsModule } from '@ngrx/effects';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HotelsModule } from './components/hotels/hotels.module';
@@ -32,6 +33,7 @@ import { MainComponent } from './components/main/main.component';
 import { TokenInterceptor } from './interceprors/token.interceptor';
 import { ContactComponent } from './components/contact/contact.component';
 import { reducers } from './store/reducers';
+import { HotelsEffects } from './store/effects/hotels.effects';
 import { environment } from '../environments/environment';
 
 export function logger(reducer: ActionReducer<any>): ActionReducer<any> {
@@ -58,6 +60,7 @@ export const metaReducers: MetaReducer<any>[] = environment.production ? [] : [l
   ],
   imports: [
     StoreModule.forRoot(reducers, { metaReducers }),
+    EffectsModule.forRoot([HotelsEffects]),
     ReactiveFormsModule,
     HttpClientModule,
     MatListModule,

@@ -1,5 +1,7 @@
+import { Store } from '@ngrx/store';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IHotel } from '../../../models';
+import { HotelsSelect } from '../../../store/actions/hotels.actions';
 
 @Component({
   selector: 'app-list',
@@ -13,10 +15,14 @@ export class ListComponent implements OnInit {
 
   @Output() public hotel: EventEmitter<IHotel> = new EventEmitter();
 
+  constructor(private store: Store<IHotel>) {}
+
   public selectHotel(hotel: IHotel): void {
-    this.hotel.emit(hotel);
+    this.store.dispatch(new HotelsSelect(hotel));
   }
 
-  public ngOnInit(): void {  }
+  public ngOnInit(): void {
+    console.log('asdasdadasdad', this.isDataLoading);
+  }
 
 }

@@ -3,11 +3,13 @@ import { IHotel } from '../../models';
 
 export interface State {
   hotelsAreLoaded: boolean;
+  selectedHotel: IHotel;
   hotels: IHotel[];
 }
 
 export const initialState: State = {
   hotelsAreLoaded: false,
+  selectedHotel: null,
   hotels: []
 };
 
@@ -16,7 +18,14 @@ export function hotelsReducer(state = initialState, action: ActionsUnion): State
     case ActionTypes.SET:
       return {
         hotelsAreLoaded: true,
+        selectedHotel: action.payload ? action.payload[0] : state.selectedHotel,
         hotels: action.payload
+      };
+
+    case ActionTypes.SELECT_HOTEL:
+      return {
+        ...state,
+        selectedHotel: action.payload,
       };
 
     case ActionTypes.CLEAR:

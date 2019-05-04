@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 import { IHotel } from '../../models';
 import { ToastrService } from 'ngx-toastr';
 import { HotelsService } from '../../services/hotels.service';
 import { FavoritesService } from '../../services/favorites.service';
+import { HotelsLoadFromServer } from '../../store/actions/hotels.actions';
 
 @Component({
   selector: 'app-main',
@@ -11,18 +14,23 @@ import { FavoritesService } from '../../services/favorites.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  public hotels$: Observable<IHotel[]>;
+  public isDataLoading$: Observable<boolean>;
+  public selectedHotel$: Observable<IHotel>;
 
   public hotels: IHotel[];
-  public selectedHotel: IHotel;
-  public isDataLoading: boolean = true;
   public activeFilter: string;
   public searchValue: string;
 
-  public constructor(private toastr: ToastrService, private hotelsService: HotelsService, private favoritesService: FavoritesService ) {
-  }
-
-  public displaySelectedHotel(hotel: IHotel): void {
-    this.selectedHotel = hotel;
+  public constructor(
+    private store: Store<IHotel[]>,
+    private toastr: ToastrService,
+    private hotelsService: HotelsService,
+    private favoritesService: FavoritesService
+  ) {
+    this.hotels$ = store.pipe(select('hotels', 'hotels'));
+    this.isDataLoading$ = store.pipe(select('hotels', 'hotelsAreLoaded'));
+    this.selectedHotel$ = store.pipe(select('hotels', 'selectedHotel'));
   }
 
   public setActiveFilter(filter: string): void {
@@ -34,17 +42,7 @@ export class MainComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.hotelsService.loadAll()
-      .subscribe(
-        (hotels: IHotel[]) => {
-          this.hotels = hotels;
-          this.selectedHotel = hotels[0];
-        },
-        () => {
-        },
-        () => {
-          this.isDataLoading = false;
-        });
+    this.store.dispatch(new HotelsLoadFromServer());
 
     this.favoritesService.getUserFavorites()
       .subscribe((favorites: string[]) => {
