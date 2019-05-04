@@ -2,6 +2,12 @@
   <mat-toolbar-row>
     <span class="nav-icon" routerLink="main">The Hotels Watcher</span>
     <span class="nav-icon" routerLink="contact">Contact us</span>
+
+    <span *ngIf="user$ | async as user">
+      <span>Welcome: </span>
+      <span>{{ user.firstName }} {{ user.lastName }}</span>
+    </span>
+
     <span class="example-spacer"></span>
     <span style="color:red">{{getFavoritesCount() || ''}}</span>
 

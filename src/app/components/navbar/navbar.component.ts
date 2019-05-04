@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 import { FavoritesService } from '../../services/favorites.service';
 import { MatDialog } from '@angular/material';
 import { FavoritesModal } from '../../modals/favorites/favorites.component';
 import { AuthService } from '../../services/auth.service';
+import {IHotel, IUser} from '../../models';
 
 @Component({
   selector: 'app-navbar',
@@ -10,8 +14,17 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  public user$: Observable<IUser>;
+  public user: IUser;
 
-  public constructor(private favoriteService: FavoritesService, public dialog: MatDialog, private auth: AuthService) {}
+  public constructor(
+    private store: Store<IUser>,
+    private favoriteService: FavoritesService,
+    public dialog: MatDialog,
+    private auth: AuthService
+  ) {
+    this.user$ = store.pipe(select('user', 'user'));
+  }
 
   public getFavoritesCount(): number {
     return this.favoriteService.getFavoritesCount();
