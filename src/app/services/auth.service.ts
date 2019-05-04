@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
+import {UserLogin, UserLogout} from '../store/actions/user.actions';
 import { ILoginBody, ILoginResponse, IUser } from '../models';
 import { environment } from '../../environments/environment';
 
@@ -14,7 +16,7 @@ export class AuthService {
   private baseUrl: string;
   private user: IUser;
 
-  public constructor(private http: HttpClient, private router: Router) {
+  public constructor(private http: HttpClient, private router: Router, private store: Store<IUser>) {
     this.baseUrl = environment.apiUrl;
   }
 
@@ -33,6 +35,7 @@ export class AuthService {
       sessionStorage.setItem('TOKEN', response.token);
 
       this.user = response.user;
+      this.store.dispatch(new UserLogin(response.user));
       this.router.navigate(['main']);
     },
       catchError((error: Error) => {
@@ -43,6 +46,7 @@ export class AuthService {
 
   public logOut(): void {
     sessionStorage.clear();
+    this.store.dispatch(new UserLogout());
     this.router.navigate(['login']);
   }
 
