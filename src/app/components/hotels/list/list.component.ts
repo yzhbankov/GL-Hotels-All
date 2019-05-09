@@ -1,6 +1,6 @@
 import { Store } from '@ngrx/store';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IHotel } from '../../../models';
+import { IApplicationState, IHotel } from '../../../models';
 import { HotelsSelect } from '../../../store/actions/hotels.actions';
 
 @Component({
@@ -14,7 +14,7 @@ export class ListComponent implements OnInit {
 
   @Output() public hotel: EventEmitter<IHotel> = new EventEmitter();
 
-  constructor(private store: Store<IHotel>) {}
+  public constructor(private store: Store<IApplicationState>) {}
 
   public selectHotel(hotel: IHotel): void {
     this.store.dispatch(new HotelsSelect(hotel));

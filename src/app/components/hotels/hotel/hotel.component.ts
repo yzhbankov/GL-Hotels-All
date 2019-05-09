@@ -3,8 +3,8 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { FavoritesService } from '../../../services/favorites.service';
-import { inFavorites } from '../../../store/reducers/user.reducer';
-import { IHotel, IUser } from '../../../models';
+import { inFavorites, IState } from '../../../store/reducers/user.reducer';
+import { IHotel } from '../../../models';
 
 @Component({
   selector: 'app-hotel',
@@ -16,7 +16,7 @@ export class HotelComponent implements OnInit {
   @Input() public hotel: IHotel;
   @Input() public index: number;
 
-  public constructor(private favoriteService: FavoritesService, private store: Store<IUser>) { }
+  public constructor(private favoriteService: FavoritesService, private store: Store<IState>) { }
 
   public handleFavorites(id: string, event: Event): void {
     event.stopPropagation();

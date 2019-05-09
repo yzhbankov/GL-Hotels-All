@@ -1,4 +1,4 @@
-import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
+import {createFeatureSelector, createSelector, MemoizedSelector, SelectorWithProps} from '@ngrx/store';
 
 import { ActionsUnion, ActionTypes } from '../actions/hotels.actions';
 import { IHotel } from '../../models';
@@ -62,7 +62,7 @@ export function hotelsReducer(state: IState = initialState, action: ActionsUnion
 }
 
 
-export const hotelsFeatureSelector = createFeatureSelector('hotels');
+export const hotelsFeatureSelector: MemoizedSelector<IState, null> = createFeatureSelector('hotels');
 
 export const selectAllHotels: MemoizedSelector<IState, IHotel[]> = createSelector(
   hotelsFeatureSelector,

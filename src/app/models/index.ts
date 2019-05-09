@@ -1,3 +1,6 @@
+import * as user from '../store/reducers/user.reducer';
+import * as hotels from '../store/reducers/hotels.reducer';
+
 export interface IWeather {
   temperature: number;
   wind: number;
@@ -62,4 +65,10 @@ export interface IUser {
   lastName: string;
   hotels: string[];
   favorites: string[];
+}
+
+
+export interface IApplicationState {
+  user: user.IState;
+  hotels: hotels.IState;
 }

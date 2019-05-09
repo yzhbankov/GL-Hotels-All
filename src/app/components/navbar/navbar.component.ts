@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material';
 
 import { Observable } from 'rxjs';
 
-import { favoritesNumber, hasFavorites } from '../../store/reducers/user.reducer';
+import { favoritesNumber, hasFavorites, IState } from '../../store/reducers/user.reducer';
 import { FavoritesModal } from '../../modals/favorites/favorites.component';
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../models';
@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
   public user: IUser;
 
   public constructor(
-    private store: Store<IUser>,
+    private store: Store<IState>,
     public dialog: MatDialog,
     private auth: AuthService
   ) {
