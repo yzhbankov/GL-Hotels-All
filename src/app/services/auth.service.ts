@@ -36,7 +36,7 @@ export class AuthService {
 
       this.user = response.user;
       this.store.dispatch(new UserLogin(response.user));
-      this.router.navigate(['main']);
+      this.router.navigate(['']);
     },
       catchError((error: Error) => {
         return of(error);

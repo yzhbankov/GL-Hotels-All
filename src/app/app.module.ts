@@ -10,9 +10,8 @@ import { MatListModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ActionReducer, MetaReducer, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { storeLogger } from 'ngrx-store-logger';
 import { EffectsModule } from '@ngrx/effects';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,16 +33,10 @@ import { MainComponent } from './components/main/main.component';
 import { TokenInterceptor } from './interceprors/token.interceptor';
 import { ContactComponent } from './components/contact/contact.component';
 import { reducers } from './store/reducers';
+import { metaReducers } from './store/reducers/meta.resucers';
 import { HotelsEffects } from './store/effects/hotels.effects';
 import { UserEffects } from './store/effects/user.effects';
 import { environment } from '../environments/environment';
-
-export function logger(reducer: ActionReducer<any>): ActionReducer<any> {
-  return storeLogger()(reducer);
-}
-
-export const metaReducers: MetaReducer<any>[] = environment.production ? [] : [logger];
-
 
 @NgModule({
   entryComponents: [FavoritesModal, ContactModal],

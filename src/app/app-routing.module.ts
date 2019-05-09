@@ -6,10 +6,10 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AuthGuardService } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', component: MainComponent, canActivate: [AuthGuardService] },
   { path: 'login', component: LoginComponent },
-  { path: 'main', component: MainComponent, canActivate: [AuthGuardService] },
   { path: 'contact', component: ContactComponent, canActivate: [AuthGuardService] },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
