@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
+import { MatDialog } from '@angular/material';
+
 import { Observable } from 'rxjs';
 
-import { FavoritesService } from '../../services/favorites.service';
-import { MatDialog } from '@angular/material';
+import { favoritesNumber, hasFavorites } from '../../store/reducers/user.reducer';
 import { FavoritesModal } from '../../modals/favorites/favorites.component';
 import { AuthService } from '../../services/auth.service';
-import {IHotel, IUser} from '../../models';
+import { IUser } from '../../models';
 
 @Component({
   selector: 'app-navbar',
@@ -14,24 +15,17 @@ import {IHotel, IUser} from '../../models';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  public user$: Observable<IUser>;
+  public favoritesCount$: Observable<number>;
+  public hasFavorites$: Observable<boolean>;
   public user: IUser;
 
   public constructor(
     private store: Store<IUser>,
-    private favoriteService: FavoritesService,
     public dialog: MatDialog,
     private auth: AuthService
   ) {
-    this.user$ = store.pipe(select('user', 'user'));
-  }
-
-  public getFavoritesCount(): number {
-    return this.favoriteService.getFavoritesCount();
-  }
-
-  public hasFavorites(): boolean {
-    return this.favoriteService.getFavoritesCount() > 0;
+    this.favoritesCount$ = store.pipe(select(favoritesNumber));
+    this.hasFavorites$ = store.pipe(select(hasFavorites));
   }
 
   public logOut(): void {

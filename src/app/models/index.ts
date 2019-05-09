@@ -60,6 +60,6 @@ export interface IUser {
   login: string;
   firstName: string;
   lastName: string;
-  hotels: [string];
-  favorites: [string];
+  hotels: string[];
+  favorites: string[];
 }

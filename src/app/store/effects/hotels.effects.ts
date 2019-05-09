@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
-import { catchError, map, mergeMap} from 'rxjs/operators';
+import {catchError, delay, map, mergeMap} from 'rxjs/operators';
 
 import { HotelsService } from '../../services/hotels.service';
 import { ActionTypes, HotelsSet } from '../actions/hotels.actions';
@@ -16,6 +16,7 @@ export class HotelsEffects {
       ofType(ActionTypes.LOAD_FROM_SERVER),
       mergeMap(() => this.hotelsService.loadAll()
         .pipe(
+          delay(3000),
           map((hotels: IHotel[]) => (new HotelsSet(hotels)),
           catchError(() => EMPTY)
         ))

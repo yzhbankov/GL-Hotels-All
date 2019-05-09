@@ -1,25 +1,40 @@
+import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
+
 import { ActionsUnion, ActionTypes } from '../actions/hotels.actions';
 import { IHotel } from '../../models';
 
-export interface State {
-  hotelsAreLoaded: boolean;
+export interface IState {
+  isLoading: boolean;
   selectedHotel: IHotel;
-  hotels: IHotel[];
+  byId: {
+    [key: string]: IHotel
+  };
+  allIds: string[];
 }
 
-export const initialState: State = {
-  hotelsAreLoaded: false,
+export const initialState: IState = {
+  isLoading: false,
   selectedHotel: null,
-  hotels: []
+  byId: {},
+  allIds: []
 };
 
-export function hotelsReducer(state = initialState, action: ActionsUnion): State {
+export function hotelsReducer(state: IState = initialState, action: ActionsUnion): IState {
   switch (action.type) {
+    case ActionTypes.LOAD_FROM_SERVER:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
     case ActionTypes.SET:
       return {
-        hotelsAreLoaded: true,
+        isLoading: false,
         selectedHotel: action.payload ? action.payload[0] : state.selectedHotel,
-        hotels: action.payload
+        byId: action.payload.reduce((memo: IState['byId'], hotel: IHotel) => {
+          return {...memo, ...{[hotel.id]: hotel}};
+        }, {}),
+        allIds: action.payload.map((hotel: IHotel) => hotel.id)
       };
 
     case ActionTypes.SELECT_HOTEL:
@@ -33,17 +48,11 @@ export function hotelsReducer(state = initialState, action: ActionsUnion): State
 
     case ActionTypes.UPDATE: {
       const hotel: IHotel = action.payload;
-      const hotels: IHotel[] = state.hotels.reduce((memo: IHotel[], _hotel: IHotel) => {
-        if (_hotel.id === hotel.id) {
-          memo.push(hotel);
-        } else {
-          memo.push(_hotel);
-        }
-        return memo;
-      }, []);
+      const hotels: IState['byId'] = {...state.byId};
+      hotels[hotel.id] = hotel;
       return {
         ...state,
-        hotels
+        byId: hotels
       };
     }
 
@@ -51,3 +60,11 @@ export function hotelsReducer(state = initialState, action: ActionsUnion): State
       return state;
   }
 }
+
+
+export const hotelsFeatureSelector = createFeatureSelector('hotels');
+
+export const selectAllHotels: MemoizedSelector<IState, IHotel[]> = createSelector(
+  hotelsFeatureSelector,
+  (hotels: IState) => Object.values(hotels.byId)
+);

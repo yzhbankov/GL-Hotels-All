@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-
-import { HotelsService } from './hotels.service';
-import { IHotel, IUserResponse } from '../models';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
+
+import { HotelsService } from './hotels.service';
+import { IHotel, IUser, IUserResponse } from '../models';
+import { HandleFavorites } from '../store/actions/user.actions';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -15,7 +17,12 @@ export class FavoritesService {
   private baseUrl: string;
   private favorites: string[] = [];
 
-  public constructor( private http: HttpClient, private toastr: ToastrService, private hotelService: HotelsService ) {
+  public constructor(
+    private http: HttpClient,
+    private toastr: ToastrService,
+    private hotelService: HotelsService,
+    private store: Store<IUser>
+  ) {
     this.baseUrl = environment.apiUrl;
   }
 
@@ -43,6 +50,7 @@ export class FavoritesService {
         )
         .subscribe((response: IUserResponse) => {
           this.favorites = response.favorites;
+          this.store.dispatch(new HandleFavorites(this.favorites));
           this.toastr.info('', `Hotel "${hotel.title}" added to favorites!`);
         });
     } else if (id) {
@@ -52,7 +60,8 @@ export class FavoritesService {
         )
         .subscribe( (response: IUserResponse) => {
             this.favorites = response.favorites;
-            this.toastr.info('', `Hotel "${hotel.title}" removed from favorites!`);
+          this.store.dispatch(new HandleFavorites(this.favorites));
+          this.toastr.info('', `Hotel "${hotel.title}" removed from favorites!`);
           }
         );
     }

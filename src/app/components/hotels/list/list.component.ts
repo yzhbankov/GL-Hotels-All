@@ -11,7 +11,6 @@ import { HotelsSelect } from '../../../store/actions/hotels.actions';
 export class ListComponent implements OnInit {
 
   @Input() public hotels: IHotel[];
-  @Input() public isDataLoading: boolean;
 
   @Output() public hotel: EventEmitter<IHotel> = new EventEmitter();
 
@@ -21,8 +20,6 @@ export class ListComponent implements OnInit {
     this.store.dispatch(new HotelsSelect(hotel));
   }
 
-  public ngOnInit(): void {
-    console.log('asdasdadasdad', this.isDataLoading);
-  }
+  public ngOnInit(): void { }
 
 }

@@ -9,12 +9,12 @@
     </span>
 
     <span class="example-spacer"></span>
-    <span style="color:red">{{getFavoritesCount() || ''}}</span>
+    <span style="color:red">{{(favoritesCount$ | async) || ''}}</span>
 
     <mat-icon
       (click)="handleFavoriteClick()"
       class="favorites-icon"
-      matTooltip="Favorites">{{hasFavorites() ? 'favorite' : 'favorite_border'}}
+      matTooltip="Favorites">{{(hasFavorites$ | async) ? 'favorite' : 'favorite_border'}}
     </mat-icon>
 
     <span class="nav-icon" (click)="logOut()">Logout</span>

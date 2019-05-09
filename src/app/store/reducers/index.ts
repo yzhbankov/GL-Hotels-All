@@ -4,8 +4,8 @@ import * as fromHotels from './hotels.reducer';
 import * as fromUser from './user.reducer';
 
 export interface IState {
-  hotels: fromHotels.State;
-  user: fromUser.State;
+  hotels: fromHotels.IState;
+  user: fromUser.IState;
 }
 
 export const reducers: ActionReducerMap<IState> = {

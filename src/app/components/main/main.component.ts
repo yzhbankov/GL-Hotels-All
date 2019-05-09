@@ -3,10 +3,10 @@ import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { IHotel } from '../../models';
-import { ToastrService } from 'ngx-toastr';
-import { HotelsService } from '../../services/hotels.service';
-import { FavoritesService } from '../../services/favorites.service';
+import { selectAllHotels } from '../../store/reducers/hotels.reducer';
 import { HotelsLoadFromServer } from '../../store/actions/hotels.actions';
+import { UserLoadFromServer } from '../../store/actions/user.actions';
+import { favoritesHotels } from '../../store/reducers/user.reducer';
 
 @Component({
   selector: 'app-main',
@@ -17,19 +17,15 @@ export class MainComponent implements OnInit {
   public hotels$: Observable<IHotel[]>;
   public isDataLoading$: Observable<boolean>;
   public selectedHotel$: Observable<IHotel>;
+  public favorites$: Observable<IHotel>;
 
-  public hotels: IHotel[];
   public activeFilter: string;
   public searchValue: string;
 
-  public constructor(
-    private store: Store<IHotel[]>,
-    private toastr: ToastrService,
-    private hotelsService: HotelsService,
-    private favoritesService: FavoritesService
-  ) {
-    this.hotels$ = store.pipe(select('hotels', 'hotels'));
-    this.isDataLoading$ = store.pipe(select('hotels', 'hotelsAreLoaded'));
+  public constructor(private store: Store<IHotel[]>) {
+    this.hotels$ = store.pipe(select(selectAllHotels));
+    this.favorites$ = store.pipe(select(favoritesHotels));
+    this.isDataLoading$ = store.pipe(select('hotels', 'isLoading'));
     this.selectedHotel$ = store.pipe(select('hotels', 'selectedHotel'));
   }
 
@@ -43,10 +39,7 @@ export class MainComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.dispatch(new HotelsLoadFromServer());
+    this.store.dispatch(new UserLoadFromServer('admin'));
 
-    this.favoritesService.getUserFavorites()
-      .subscribe((favorites: string[]) => {
-        console.info('favorites', favorites);
-      });
   }
 }

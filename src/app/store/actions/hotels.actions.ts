@@ -33,4 +33,4 @@ export class HotelsSelect implements Action {
 }
 
 
-export type ActionsUnion = HotelsSet | HotelsClear | HotelsUpdate | HotelsSelect;
+export type ActionsUnion = HotelsSet | HotelsClear | HotelsUpdate | HotelsSelect | HotelsLoadFromServer;

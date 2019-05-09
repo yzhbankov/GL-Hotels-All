@@ -20,6 +20,7 @@ import { HotelsModule } from './components/hotels/hotels.module';
 import { FilterPipe, SearchPipe } from './pipes/filter.pipe';
 import { FavoritesService } from './services/favorites.service';
 import { HotelsService } from './services/hotels.service';
+import { UserService } from './services/user.service';
 import { AuthGuardService } from './guards/auth.guard';
 
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { TokenInterceptor } from './interceprors/token.interceptor';
 import { ContactComponent } from './components/contact/contact.component';
 import { reducers } from './store/reducers';
 import { HotelsEffects } from './store/effects/hotels.effects';
+import { UserEffects } from './store/effects/user.effects';
 import { environment } from '../environments/environment';
 
 export function logger(reducer: ActionReducer<any>): ActionReducer<any> {
@@ -60,7 +62,7 @@ export const metaReducers: MetaReducer<any>[] = environment.production ? [] : [l
   ],
   imports: [
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([HotelsEffects]),
+    EffectsModule.forRoot([HotelsEffects, UserEffects]),
     ReactiveFormsModule,
     HttpClientModule,
     MatListModule,
@@ -87,6 +89,7 @@ export const metaReducers: MetaReducer<any>[] = environment.production ? [] : [l
       multi: true,
     },
     HotelsService,
+    UserService,
     FavoritesService,
     AuthGuardService,
     {provide: MatDialogRef, useValue: {}}
