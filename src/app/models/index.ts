@@ -49,8 +49,8 @@ export interface IHotelsResponse {
 export interface IUserResponse {
   login: string;
   avatarUrl: string;
-  hotels: [string];
-  favorites: [string];
+  hotels: string[];
+  favorites: string[];
 }
 
 

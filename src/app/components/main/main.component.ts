@@ -4,8 +4,6 @@ import { Observable } from 'rxjs';
 
 import { IHotel } from '../../models';
 import * as hotels from '../../store/reducers/hotels.reducer';
-import { HotelsLoadFromServer } from '../../store/actions/hotels.actions';
-import { UserLoadFromServer } from '../../store/actions/user.actions';
 import * as user from '../../store/reducers/user.reducer';
 
 @Component({
@@ -25,8 +23,8 @@ export class MainComponent implements OnInit {
   public constructor(private store: Store<hotels.IState | user.IState>) {
     this.hotels$ = store.pipe(select(hotels.selectAllHotels));
     this.favorites$ = store.pipe(select(user.favoritesHotels));
-    this.isDataLoading$ = store.pipe(select('hotels', 'isLoading'));
-    this.selectedHotel$ = store.pipe(select('hotels', 'selectedHotel'));
+    this.isDataLoading$ = store.pipe(select(hotels.isLoading));
+    this.selectedHotel$ = store.pipe(select(hotels.selectedHotel));
   }
 
   public setActiveFilter(filter: string): void {
@@ -38,8 +36,6 @@ export class MainComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.store.dispatch(new HotelsLoadFromServer());
-    this.store.dispatch(new UserLoadFromServer('admin'));
 
   }
 }

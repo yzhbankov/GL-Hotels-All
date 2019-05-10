@@ -68,3 +68,13 @@ export const selectAllHotels: MemoizedSelector<IState, IHotel[]> = createSelecto
   hotelsFeatureSelector,
   (hotels: IState) => Object.values(hotels.byId)
 );
+
+export const isLoading: MemoizedSelector<IState, boolean> = createSelector(
+  hotelsFeatureSelector,
+  (hotels: IState) => hotels.isLoading
+);
+
+export const selectedHotel: MemoizedSelector<IState, IHotel> = createSelector(
+  hotelsFeatureSelector,
+  (hotels: IState) => hotels.selectedHotel
+);

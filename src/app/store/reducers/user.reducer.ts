@@ -5,22 +5,21 @@ import * as Hotels from '../reducers/hotels.reducer';
 import { IHotel, IUser } from '../../models';
 
 export interface IState {
-  isUserLogged: boolean;
+  authenticated: boolean;
   data: IUser;
 }
 
 export const initialState: IState = {
-  isUserLogged: false,
+  authenticated: false,
   data: null
 };
 
 export function userReducer(state: IState = initialState, action: ActionsUnion): IState {
   switch (action.type) {
     case ActionTypes.Login:
-    case ActionTypes.UserSet:
       return {
         data: action.payload,
-        isUserLogged: true
+        authenticated: true
       };
 
     case ActionTypes.HandleFavorites:

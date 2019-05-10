@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { IUserResponse } from '../models';
+import { IUser } from '../models';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class UserService {
       {headers: {responseType: 'text'}}
     )
       .pipe(
-      map((response: IUserResponse) => {
+      map((response: IUser) => {
         return response;
       })
     );

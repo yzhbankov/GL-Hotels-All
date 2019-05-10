@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { select, Store } from '@ngrx/store';
 
-import { AuthService } from './services/auth.service';
+import * as hotels from './store/reducers/hotels.reducer';
+import * as user from './store/reducers/user.reducer';
+import { UserCheckLogin } from './store/actions/user.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +13,14 @@ import { AuthService } from './services/auth.service';
 })
 
 export class AppComponent implements OnInit {
-  public constructor(private toastr: ToastrService, private authService: AuthService ) {
+  public isLoggined$: Observable<boolean>;
+
+  public constructor(private store: Store<hotels.IState | user.IState>) {
+    this.isLoggined$ = store.pipe(select('user', 'authenticated'));
   }
 
   public ngOnInit(): void {
+      this.store.dispatch(new UserCheckLogin());
   }
 
 }

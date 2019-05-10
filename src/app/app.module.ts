@@ -30,12 +30,13 @@ import { ContactModal } from './modals/contact/contact.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
+import { ContainerComponent } from './components/container/container.component';
 import { TokenInterceptor } from './interceprors/token.interceptor';
 import { ContactComponent } from './components/contact/contact.component';
 import { reducers } from './store/reducers';
 import { metaReducers } from './store/reducers/meta.resucers';
 import { HotelsEffects } from './store/effects/hotels.effects';
-import { UserEffects } from './store/effects/user.effects';
+import { AuthEffects } from './store/effects/auth.effects';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -51,11 +52,12 @@ import { environment } from '../environments/environment';
     NavbarComponent,
     LoginComponent,
     MainComponent,
+    ContainerComponent,
     ContactComponent,
   ],
   imports: [
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([HotelsEffects, UserEffects]),
+    EffectsModule.forRoot([HotelsEffects, AuthEffects]),
     ReactiveFormsModule,
     HttpClientModule,
     MatListModule,

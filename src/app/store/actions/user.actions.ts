@@ -4,19 +4,12 @@ import { IUser } from '../../models';
 export enum ActionTypes {
   Login = '[User] Login',
   Logout = '[User] Logout',
-  LoadFromServer = '[User] Load from server',
-  UserSet = '[User] Set',
   HandleFavorites = '[User Favorites] Handle',
+  CheckLogin = '[User] Check Login'
 }
 
-export class UserLoadFromServer implements Action {
-  readonly type = ActionTypes.LoadFromServer;
-  constructor(public payload: string) {}
-}
-
-export class UserSet implements Action {
-  readonly type = ActionTypes.UserSet;
-  constructor(public payload: IUser) {}
+export class UserCheckLogin implements Action {
+  readonly type = ActionTypes.CheckLogin;
 }
 
 export class UserLogin implements Action {
@@ -33,4 +26,4 @@ export class HandleFavorites implements Action {
   constructor(public payload: string[]) {}
 }
 
-export type ActionsUnion = UserLogin | UserLogout | UserSet | UserLoadFromServer | HandleFavorites;
+export type ActionsUnion = UserLogin | UserLogout | HandleFavorites;
