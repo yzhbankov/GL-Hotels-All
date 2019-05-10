@@ -16,7 +16,6 @@ export class HotelsEffects {
       ofType(ActionTypes.LOAD_FROM_SERVER),
       mergeMap(() => this.hotelsService.loadAll()
         .pipe(
-          delay(3000),
           map((hotels: IHotel[]) => (new HotelsSet(hotels)),
           catchError(() => EMPTY)
         ))

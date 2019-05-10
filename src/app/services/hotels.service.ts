@@ -20,10 +20,6 @@ export class HotelsService {
     this.dataStore = { hotels: [] };
   }
 
-  public getAllHotels(): IHotel[] {
-    return this.dataStore.hotels;
-  }
-
   public getHotelById(id: string): IHotel {
     return this.dataStore.hotels.find((hotel: IHotel) => hotel.id === id);
   }
@@ -40,13 +36,4 @@ export class HotelsService {
       );
   }
 
-  public loadById(id: string): Observable<IHotel> {
-    return this.http
-      .get<IHotelsResponse>( `${this.baseUrl}/hotels/${id}`)
-      .pipe(
-        map((response: IHotelsResponse) => {
-          return response.hotel;
-        })
-      );
-  }
 }

@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material';
 import { select, Store } from '@ngrx/store';
 
 import { IHotel } from '../../models';
-import { favoritesHotels, hasFavorites } from '../../store/reducers/user.reducer';
+import { favoritesHotels, hasFavorites, IState } from '../../store/reducers/user.reducer';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,7 +17,7 @@ export class FavoritesModal implements OnInit {
 
   public constructor(
     public dialogRef: MatDialogRef<FavoritesModal>,
-    public store: Store<any>
+    public store: Store<IState>
   ) {
     this.favorites$ = store.pipe(select(favoritesHotels));
     this.hasFavorites$ = store.pipe(select(hasFavorites));

@@ -1,4 +1,4 @@
-import {createFeatureSelector, createSelector, MemoizedSelector, SelectorWithProps} from '@ngrx/store';
+import { createFeatureSelector, createSelector, MemoizedSelector } from '@ngrx/store';
 
 import { ActionsUnion, ActionTypes } from '../actions/hotels.actions';
 import { IHotel } from '../../models';

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 
 import { HotelsService } from './hotels.service';
@@ -24,18 +22,6 @@ export class FavoritesService {
     private store: Store<IUser>
   ) {
     this.baseUrl = environment.apiUrl;
-  }
-
-  public getUserFavorites(): Observable<string[]> {
-    const login: string = sessionStorage.getItem('LOGIN');
-    return this.http
-      .get<IUserResponse>( `${this.baseUrl}/users/${login}`)
-      .pipe(
-        map((response: IUserResponse) => {
-          this.favorites = response.favorites;
-          return response.favorites;
-        })
-      );
   }
 
   public handleFavorites(id: string): void {
@@ -67,15 +53,4 @@ export class FavoritesService {
     }
   }
 
-  public getFavoritesHotels(): IHotel[] {
-    return this.favorites.map((id: string) => this.hotelService.getHotelById(id));
-  }
-
-  public getFavoritesCount(): number {
-    return this.favorites.length;
-  }
-
-  public hotelInFavorites(hotelId: string): boolean {
-    return this.favorites.some((favoriteId: string) => favoriteId === hotelId);
-  }
 }
