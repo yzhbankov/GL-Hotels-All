@@ -103,6 +103,18 @@ MIT
 @angular/router
 MIT
 
+@ngrx/effects
+MIT
+
+@ngrx/router-store
+MIT
+
+@ngrx/store
+MIT
+
+@ngrx/store-devtools
+MIT
+
 core-js
 MIT
 Copyright (c) 2014-2019 Denis Pushkarev
