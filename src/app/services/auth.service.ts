@@ -9,6 +9,7 @@ import { UserLogin, UserLogout } from '../store/actions/user.actions';
 import { ILoginBody, ILoginResponse, IUser } from '../models';
 import { environment } from '../../environments/environment';
 import { SESSION_STORAGE } from '../../common/constants';
+import * as RouterActions from '../store/actions/router.actions';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,7 @@ export class AuthService {
 
       this.user = response.user;
       this.store.dispatch(new UserLogin(response.user));
-      this.router.navigate(['']);
+      this.store.dispatch(new RouterActions.Go({ path: [''] }));
     },
       catchError((error: Error) => {
         return of(error);
@@ -48,7 +49,11 @@ export class AuthService {
   public logOut(): void {
     sessionStorage.clear();
     this.store.dispatch(new UserLogout());
-    this.router.navigate(['login']);
+    this.store.dispatch(new RouterActions.Go({
+      path: ['/login', { routeParam: 1 }],
+      query: { page: 1 },
+      extras: { replaceUrl: false }
+    }));
   }
 
   public getToken(): string {

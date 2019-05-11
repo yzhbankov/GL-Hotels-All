@@ -3,7 +3,7 @@ import { select, Store } from '@ngrx/store';
 import { MatDialog } from '@angular/material';
 
 import { Observable } from 'rxjs';
-
+import * as RouterActions from '../../store/actions/router.actions';
 import { favoritesNumber, hasFavorites, IState } from '../../store/reducers/user.reducer';
 import { FavoritesModal } from '../../modals/favorites/favorites.component';
 import { AuthService } from '../../services/auth.service';
@@ -41,6 +41,10 @@ export class NavbarComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+  }
+
+  public navigateTo(path: string): void {
+    this.store.dispatch(new RouterActions.Go({ path: [path] }));
   }
 
   public ngOnInit(): void {}

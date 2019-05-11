@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { Store } from '@ngrx/store';
+import { select, Store } from '@ngrx/store';
 
 import { HotelsService } from './hotels.service';
 import { IHotel, IUser, IUserResponse } from '../models';
 import { HandleFavorites } from '../store/actions/user.actions';
+import { IState } from '../store/reducers/user.reducer';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -22,6 +23,11 @@ export class FavoritesService {
     private store: Store<IUser>
   ) {
     this.baseUrl = environment.apiUrl;
+    store.pipe(select('user', 'data')).subscribe((user: IState['data']) => {
+      if (user) {
+        this.favorites = user.favorites;
+      }
+    });
   }
 
   public handleFavorites(id: string): void {

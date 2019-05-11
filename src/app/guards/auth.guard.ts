@@ -7,6 +7,7 @@ import { select, Store } from '@ngrx/store';
 import { AuthService } from '../services/auth.service';
 import { IApplicationState, IUser } from '../models';
 import { UserLogout } from '../store/actions/user.actions';
+import * as RouterActions from '../store/actions/router.actions';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
@@ -30,8 +31,11 @@ export class AuthGuardService implements CanActivate {
         if (this.authenticated) {
           this.store.dispatch(new UserLogout());
         }
-
-        this.router.navigate(['/login']);
+        this.store.dispatch(new RouterActions.Go({
+          path: ['/login', { routeParam: 1 }],
+          query: { page: 1 },
+          extras: { replaceUrl: false }
+        }));
         return of(false);
       })
     );

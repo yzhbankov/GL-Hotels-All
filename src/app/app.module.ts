@@ -1,42 +1,53 @@
+import { MatListModule } from '@angular/material';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserModule } from '@angular/platform-browser';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { MatListModule } from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 
 import { AppRoutingModule } from './app-routing.module';
-import { HotelsModule } from './components/hotels/hotels.module';
 import { FilterPipe, SearchPipe } from './pipes/filter.pipe';
+
+
+// Guards
+import { AuthGuardService } from './guards/auth.guard';
+// Interceptors
+import { TokenInterceptor } from './interceprors/token.interceptor';
+// Services
 import { FavoritesService } from './services/favorites.service';
 import { HotelsService } from './services/hotels.service';
-import { AuthGuardService } from './guards/auth.guard';
-
-import { AppComponent } from './app.component';
+// Effects
+import { HotelsEffects } from './store/effects/hotels.effects';
+import { AuthEffects } from './store/effects/auth.effects';
+import { RouterEffects } from './store/effects/router.effects';
+// Reducers
+import { reducers } from './store/reducers';
+import { metaReducers } from './store/reducers/meta.resucers';
+// Components
+import { HotelsModule } from './components/hotels/hotels.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FavoritesModal } from './modals/favorites/favorites.component';
-import { ContactModal } from './modals/contact/contact.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LoginComponent } from './components/login/login.component';
 import { MainComponent } from './components/main/main.component';
 import { ContainerComponent } from './components/container/container.component';
-import { TokenInterceptor } from './interceprors/token.interceptor';
 import { ContactComponent } from './components/contact/contact.component';
-import { reducers } from './store/reducers';
-import { metaReducers } from './store/reducers/meta.resucers';
-import { HotelsEffects } from './store/effects/hotels.effects';
-import { AuthEffects } from './store/effects/auth.effects';
+import { AppComponent } from './app.component';
+import { FavoritesModal } from './modals/favorites/favorites.component';
+import { ContactModal } from './modals/contact/contact.component';
+
 import { environment } from '../environments/environment';
+import { CustomSerializer } from './custom-route-serializer';
 
 @NgModule({
   entryComponents: [FavoritesModal, ContactModal],
@@ -56,7 +67,10 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     StoreModule.forRoot(reducers, { metaReducers }),
-    EffectsModule.forRoot([HotelsEffects, AuthEffects]),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer
+    }),
+    EffectsModule.forRoot([HotelsEffects, AuthEffects, RouterEffects]),
     ReactiveFormsModule,
     HttpClientModule,
     MatListModule,
