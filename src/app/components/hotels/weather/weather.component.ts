@@ -10,7 +10,6 @@ export class WeatherComponent implements OnInit {
   @Input() public weather: IWeather;
 
   public ngOnInit(): void {
-    console.log(this.weather);
   }
 
 }

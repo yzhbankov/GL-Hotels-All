@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Favorites:</h1>
 
-<span *ngIf="(hasFavorites$ | async); else elseBlock">
+<div *ngIf="(hasFavorites$ | async); else elseBlock" class="favorites-content">
 <mat-list [className]="'items-list'">
   <mat-list-item *ngFor="let hotel of (favorites$ | async); let i = index;">
     <app-hotel
@@ -10,7 +10,7 @@
     <hr/>
   </mat-list-item>
 </mat-list>
-</span>
+</div>
 
 <ng-template #elseBlock>
   <div>The favorites is empty</div>
