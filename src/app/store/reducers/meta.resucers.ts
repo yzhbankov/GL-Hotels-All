@@ -20,7 +20,9 @@ function clearState(reducer) {
   };
 }
 
-const reducers: MetaReducer<any>[] = environment.production ? [] : [logger];
+const loggerOn: boolean = localStorage.getItem('LOGGER');
+
+const reducers: MetaReducer<any>[] = (environment.production && !loggerOn) ? [] : [logger];
 
 reducers.push(clearState);
 
