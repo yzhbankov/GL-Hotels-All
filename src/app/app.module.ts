@@ -27,9 +27,9 @@ import { TokenInterceptor } from './interceprors/token.interceptor';
 import { FavoritesService } from './services/favorites.service';
 import { HotelsService } from './services/hotels.service';
 // Effects
-import { HotelsEffects } from './store/effects/hotels.effects';
-import { AuthEffects } from './store/effects/auth.effects';
-import { RouterEffects } from './store/effects/router.effects';
+import { HotelsEffects } from './effects/hotels.effects';
+import { AuthEffects } from './effects/auth.effects';
+import { RouterEffects } from './effects/router.effects';
 // Reducers
 import { reducers } from './store/reducers';
 import { metaReducers } from './store/reducers/meta.resucers';

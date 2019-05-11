@@ -3,9 +3,9 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
-import { HotelsService } from '../../services/hotels.service';
-import { ActionTypes, HotelsSet } from '../actions/hotels.actions';
-import { IHotel } from '../../models';
+import { HotelsService } from '../services/hotels.service';
+import { ActionTypes, HotelsSet } from '../store/actions/hotels.actions';
+import { IHotel } from '../models';
 
 @Injectable()
 export class HotelsEffects {

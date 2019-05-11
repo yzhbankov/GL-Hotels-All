@@ -3,9 +3,9 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 
-import { AuthService } from '../../services/auth.service';
-import { ActionTypes, UserLogin } from '../actions/user.actions';
-import { IUser } from '../../models';
+import { AuthService } from '../services/auth.service';
+import { ActionTypes, UserLogin } from '../store/actions/user.actions';
+import { IUser } from '../models';
 
 @Injectable()
 export class AuthEffects {

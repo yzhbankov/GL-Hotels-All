@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { map, tap } from 'rxjs/operators';
-import * as RouterActions from '../actions/router.actions';
+import * as RouterActions from '../store/actions/router.actions';
 
 @Injectable()
 export class RouterEffects {
