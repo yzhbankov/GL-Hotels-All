@@ -8,6 +8,8 @@ import { favoritesNumber, hasFavorites, IState } from '../../store/reducers/user
 import { FavoritesModal } from '../../modals/favorites/favorites.component';
 import { AuthService } from '../../services/auth.service';
 import { IUser } from '../../models';
+import * as hotels from "../../store/reducers/hotels.reducer";
+import * as user from "../../store/reducers/user.reducer";
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +20,7 @@ export class NavbarComponent implements OnInit {
   public favoritesCount$: Observable<number>;
   public hasFavorites$: Observable<boolean>;
   public user: IUser;
+  public isLoggined$: Observable<boolean>;
 
   public constructor(
     private store: Store<IState>,
@@ -26,6 +29,7 @@ export class NavbarComponent implements OnInit {
   ) {
     this.favoritesCount$ = store.pipe(select(favoritesNumber));
     this.hasFavorites$ = store.pipe(select(hasFavorites));
+    this.isLoggined$ = store.pipe(select('user', 'authenticated'));
   }
 
   public logOut(): void {

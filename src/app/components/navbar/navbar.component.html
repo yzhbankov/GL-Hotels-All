@@ -12,12 +12,13 @@
     <span style="color:red">{{(favoritesCount$ | async) || ''}}</span>
 
     <mat-icon
+      *ngIf="isLoggined$ | async"
       (click)="handleFavoriteClick()"
       class="favorites-icon"
       matTooltip="Favorites">{{(hasFavorites$ | async) ? 'favorite' : 'favorite_border'}}
     </mat-icon>
 
-    <span class="nav-icon" (click)="logOut()">Logout</span>
+    <span *ngIf="isLoggined$ | async" class="nav-icon" (click)="logOut()">Logout</span>
 
   </mat-toolbar-row>
 </mat-toolbar>

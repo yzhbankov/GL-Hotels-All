@@ -12,6 +12,14 @@
       <input class="full-width" type="text" id='email' formControlName="email">
     </div>
 
+    <div *ngIf="email.invalid && (email.dirty || email.touched)"
+         class="alert">
+
+      <div *ngIf="email.errors">
+        Value has to be a valid email address.
+      </div>
+    </div>
+
     <div class="text-center">
       <label for="name">Name</label>
     </div>
@@ -19,11 +27,27 @@
       <input class="full-width" type="text" id='name' formControlName="name">
     </div>
 
+    <div *ngIf="name.invalid && (name.dirty || name.touched)"
+         class="alert">
+
+      <div *ngIf="name.errors">
+        Name is required.
+      </div>
+    </div>
+
     <div class="text-center">
       <label for="proposal">Proposal</label>
     </div>
     <div class="text-center">
       <textarea class="full-width" type="text" id="proposal" formControlName="proposal"></textarea>
+    </div>
+
+    <div *ngIf="proposal.invalid && (proposal.dirty || proposal.touched)"
+         class="alert">
+
+      <div *ngIf="proposal.errors">
+        Proposal is required.
+      </div>
     </div>
 
     <div class="text-center">

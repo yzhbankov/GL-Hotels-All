@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ContactModal } from '../../modals/contact/contact.component';
 
@@ -33,6 +33,18 @@ export class ContactComponent implements OnInit {
     });
 
     this.contactForm.reset();
+  }
+
+  public get name(): AbstractControl {
+    return this.contactForm.get('name');
+  }
+
+  public get email(): AbstractControl {
+    return this.contactForm.get('email');
+  }
+
+  public get proposal(): AbstractControl {
+    return this.contactForm.get('proposal');
   }
 
   public ngOnInit(): void {

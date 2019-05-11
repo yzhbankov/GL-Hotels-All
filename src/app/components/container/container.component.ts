@@ -17,6 +17,5 @@ export class ContainerComponent implements OnInit {
 
   public ngOnInit(): void {
     this.store.dispatch(new HotelsLoadFromServer());
-    // this.store.dispatch(new UserLoadFromServer('admin'));
   }
 }

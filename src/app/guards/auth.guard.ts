@@ -32,9 +32,9 @@ export class AuthGuardService implements CanActivate {
           this.store.dispatch(new UserLogout());
         }
         this.store.dispatch(new RouterActions.Go({
-          path: ['/login', { routeParam: 1 }],
-          query: { page: 1 },
-          extras: { replaceUrl: false }
+          path: ['/login'],
+          // query: { page: 1 },
+          // extras: { replaceUrl: false }
         }));
         return of(false);
       })
