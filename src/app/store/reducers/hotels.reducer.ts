@@ -50,9 +50,11 @@ export function hotelsReducer(state: IState = initialState, action: ActionsUnion
       const hotel: IHotel = action.payload;
       const hotels: IState['byId'] = {...state.byId};
       hotels[hotel.id] = hotel;
+
       return {
         ...state,
-        byId: hotels
+        byId: hotels,
+        selectedHotel: state.selectedHotel.id === hotel.id ? hotel : state.selectedHotel,
       };
     }
 
