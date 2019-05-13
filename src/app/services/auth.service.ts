@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { UserLogin, UserLogout } from '../store/actions/user.actions';
+import { UserLogout } from '../store/actions/user.actions';
 import { ILoginBody, ILoginResponse, IUser } from '../models';
 import { environment } from '../../environments/environment';
 import { SESSION_STORAGE } from '../../common/constants';
@@ -16,33 +15,19 @@ import * as RouterActions from '../store/actions/router.actions';
 })
 export class AuthService {
   private baseUrl: string;
-  private user: IUser;
 
   public constructor(private http: HttpClient, private router: Router, private store: Store<IUser>) {
     this.baseUrl = environment.apiUrl;
   }
 
-  public logIn(loginBody: ILoginBody): void {
+  public logIn(loginBody: ILoginBody): Observable<any> {
     const email: string = loginBody.email;
     const password: string = loginBody.password;
 
-    this.http.post<ILoginResponse>(
+    return this.http.post<ILoginResponse>(
       `${this.baseUrl}/auth/login`,
       { password, email },
       {headers: {}}
-    ).subscribe((response: ILoginResponse) => {
-      sessionStorage.clear();
-      sessionStorage.setItem(SESSION_STORAGE.EMAIL, response.user.email);
-      sessionStorage.setItem(SESSION_STORAGE.LOGIN, response.user.login);
-      sessionStorage.setItem(SESSION_STORAGE.TOKEN, response.token);
-
-      this.user = response.user;
-      this.store.dispatch(new UserLogin(response.user));
-      this.store.dispatch(new RouterActions.Go({ path: [''] }));
-    },
-      catchError((error: Error) => {
-        return of(error);
-      })
     );
   }
 
