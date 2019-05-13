@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { EMPTY, of } from 'rxjs';
-import { catchError, map, mergeMap, switchMap } from 'rxjs/operators';
+import {catchError, delay, map, mergeMap, switchMap} from 'rxjs/operators';
 
 import { AuthService } from '../services/auth.service';
 import { ActionTypes, UserLogin, UserLoginFails } from '../store/actions/user.actions';
@@ -29,6 +29,7 @@ export class AuthEffects {
   public authenticate$ = this.actions$
     .pipe(
       ofType(ActionTypes.Authenticate),
+      delay(3000),
       mergeMap((action: UserAuthenticate) => this.authService.logIn(action.payload)
         .pipe(
           map((response: ILoginResponse) => {

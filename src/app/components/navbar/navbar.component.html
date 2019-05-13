@@ -3,11 +3,6 @@
     <span class="nav-icon" (click)="navigateTo('')">The Hotels Watcher</span>
     <span class="nav-icon" (click)="navigateTo('contact')">Contact us</span>
 
-    <span *ngIf="user$ | async as user">
-      <span>Welcome: </span>
-      <span>{{ user.firstName }} {{ user.lastName }}</span>
-    </span>
-
     <span class="example-spacer"></span>
     <span style="color:red">{{(favoritesCount$ | async) || ''}}</span>
 

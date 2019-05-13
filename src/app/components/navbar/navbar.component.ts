@@ -7,7 +7,6 @@ import * as RouterActions from '../../store/actions/router.actions';
 import { favoritesNumber, hasFavorites, IState } from '../../store/reducers/user.reducer';
 import { FavoritesModal } from '../../modals/favorites/favorites.component';
 import { AuthService } from '../../services/auth.service';
-import { IUser } from '../../models';
 
 @Component({
   selector: 'app-navbar',
@@ -17,7 +16,6 @@ import { IUser } from '../../models';
 export class NavbarComponent implements OnInit {
   public favoritesCount$: Observable<number>;
   public hasFavorites$: Observable<boolean>;
-  public user$: Observable<IUser>;
   public isLoggined$: Observable<boolean>;
 
   public constructor(
@@ -28,7 +26,6 @@ export class NavbarComponent implements OnInit {
     this.favoritesCount$ = store.pipe(select(favoritesNumber));
     this.hasFavorites$ = store.pipe(select(hasFavorites));
     this.isLoggined$ = store.pipe(select('user', 'authenticated'));
-    this.user$ = store.pipe(select('user', 'data'));
   }
 
   public logOut(): void {

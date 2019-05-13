@@ -1,22 +1,30 @@
 <div class="login">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
-    <div class="text-center">
-      <label for="email">Email</label>
-    </div>
-    <div class="text-center">
-      <input type="text" id='email' formControlName="email">
-    </div>
+  <div class="login-header">SIGN IN</div>
+  <div *ngIf="!(loading$ | async); else elseBlock">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-container">
 
-    <div class="text-center">
-      <label for="password">Password</label>
-    </div>
-    <div class="text-center">
-      <input type="password" id='password' formControlName="password">
-    </div>
+      <p>
+        <input type="text" id='email' formControlName="email" placeholder="Email">
+      </p>
 
-    <div class="text-center">
-      <button type="submit">Login</button>
+      <p>
+        <input type="password" id='password' formControlName="password" placeholder="Password">
+      </p>
+
+      <p>
+        <input type="submit" value="Log in" [disabled]="loading$ | async">
+      </p>
+
+      <p class="error" *ngIf="error$ | async">{{error$ | async}}</p>
+
+    </form>
+  </div>
+
+  <ng-template #elseBlock>
+    <div class="login-container" style="text-align: center">
+      <div class="loader"></div>
     </div>
-  </form>
+  </ng-template>
+
 </div>
