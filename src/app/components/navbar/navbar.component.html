@@ -9,6 +9,7 @@
     <mat-icon
       *ngIf="isLoggined$ | async"
       (click)="handleFavoriteClick()"
+      [@favoritesState]="state"
       class="favorites-icon"
       matTooltip="Favorites">{{(hasFavorites$ | async) ? 'favorite' : 'favorite_border'}}
     </mat-icon>
