@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -76,6 +77,7 @@ import { CustomSerializer } from './custom-route-serializer';
     MatListModule,
     MatTooltipModule,
     MatDialogModule,
+    MatButtonModule,
     MatIconModule,
     MatToolbarModule,
     BrowserModule,
